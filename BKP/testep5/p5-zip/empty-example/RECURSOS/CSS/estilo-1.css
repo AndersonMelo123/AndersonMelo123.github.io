@@ -1,0 +1,144 @@
+.gwd-img-mudada {}
+
+
+*{ margin : 0px;
+
+} #menu{
+	height: 15%;
+	width:100%;
+	border-width:thin;
+	background-color:#1C1C1C;
+	border-bottom-style:solid;
+	border-color:#FEFEFE;
+} #home{
+	height: 100%;
+	width: 100%;
+	background-repeat: no-repeat;
+	background-attachment: fixed;
+	background-image: url("imagens/img-07.png");
+	background-color: #1C1C1C;
+} #second{
+	background-repeat: no-repeat;
+	background-attachment: fixed;
+	background-image:url("imagens/img-3.png");
+	height: 110%;
+	width: 100%;
+} #third{
+	background-repeat: no-repeat;
+	background-attachment: fixed;
+	height: 110%;
+	width: 100%;
+	background-color:#F0E68C
+} #fourth{
+	background-repeat: no-repeat;
+	background-attachment: fixed;
+	height:	60%;
+	width: 100%;
+	background-color:#FEFEFE;
+}#homeMod{
+	height: 150%;
+	width: 98%;
+	background-repeat: no-repeat;
+	background-attachment: fixed;
+	background-image: url("imagens/img-07.png");
+	background-color: #1C1C1C;
+	padding: 1%;
+} #img{
+	margin-top: 1%;
+	margin-left: 42%;
+} #img2{
+	margin-top: 12%;
+	margin-left: 35%;
+} #img3{
+	margin-left:28%;
+} #button{
+	background-color: none;
+} .buttonComece{
+	margin-top: 10%;
+	margin-left: 35%;
+	background-color: #4CAF50;
+   padding: 1% 10%;
+   border-radius: 10px;
+   font-size: 20px;
+   font-family: sans-serif;
+   color: #FEFEFE;
+}.button2:hover {
+    background-color:#CCFFFF ;
+    color: #000000;
+} #fonte{
+	margin-top: 17%;
+	margin-left: 2%;
+	margin-right: 2%;
+	font-family: sans-serif;
+	color: #FEFEFE;
+}#forma div{
+	float: left;
+   width: 16%;
+   height: 20%;
+   background: #ffffff;
+   margin: 1% 0% 3% 2%;
+   text-align: center;
+   border-radius: 10px;
+   border: 1px solid #000000;
+   opacity: 0.60;
+}#forma h1{
+	font-family: sans-serif;
+	color: #ffffff;
+	font-size: 25pt;
+	margin:3% 0% 0% 2%;
+}#forma h2{
+	font-family: sans-serif;
+	color: #ffffff;
+	font-size: 25pt;
+	margin:8% 0% 0% 2%;
+}#forma div a{
+	margin-left: 20%;
+	display: block;
+	width: 60%;
+	height: 15%;
+	text-align: center;
+	color: #000000;
+	font-size: 15pt;
+	font-family: sans-serif;
+	border:1px solid #000000;
+	text-decoration: none;
+border-radius: 10px;
+}#forma div p{
+	position: relative;
+	font-family: sans-serif;
+	color: #000000;
+	font-size: 15pt;
+	text-align: center;
+	margin-top: 18%;
+	margin-bottom:15%;
+}#formaMapa div{
+	float: left;
+	border: 1px solid #ffffff;
+   width: 15%;
+   height: 25%;
+   background: #8FBC8F;
+   margin: 15% 1% 0% 1%;
+   text-align: center;
+   vertical-align: middle;
+   line-height: 70px;
+   font-family: sans-serif;
+   font-size: 15pt;
+   min-width:17.5%;
+   color: #ffffff;
+   border-radius: 10px;
+   opacity: 0.75;
+ }#formaMapa div a{
+	text-decoration: none;
+	color: #ffffff;
+ }#formaMapa div:hover{
+	background-color: #000000;
+	color: #ffffff;
+	text-decoration: none;
+ } iframe{
+ 	width: 750px;
+ 	height: 400px;
+ 	margin: 5% 0% 0% 20%;
+ 	border-radius: 15px;
+ 	background-color: #ffffff;
+
+ }
