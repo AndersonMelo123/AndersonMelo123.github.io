@@ -20,6 +20,13 @@ var palavrasQuebradas = [
   'Sa - bo - ne - te', 'Ma - ca - xei - ra', 'Re - cei - ta', 'Que - bra - do', 'A - cor - dar'
 ];
 
+var tipo = [
+  "Monossílabas", "Monossílabas", "Monossílabas", "Monossílabas", "Monossílabas",
+  "Dissílabas", "Dissílabas", "Dissílabas", "Dissílabas", "Dissílabas",
+  "Trissílabas", "Trissílabas", "Trissílabas", "Trissílabas", "Trissílabas",
+  "Polissílabas", "Polissílabas", "Polissílabas", "Polissílabas", "Polissílabas", 
+];
+
 
 var bkgImg;
 
@@ -38,8 +45,10 @@ var btSomImgVetor;
 var numBlocos = 20;
 
 var blocoAtual = 0;
+var blocoAtual2 = 0;
 
 var blocos = [];
+var blocos2 = [];
 
 function preload() {
   title = 'Nome';
@@ -61,6 +70,7 @@ function setup() {
 
   for (var i = 0; i < numBlocos; i++) {
     blocos[i] = new Bloco(listaPalavrasArray[i], palavrasQuebradas[i]);
+    blocos2[i] = new Bloco2(tipo[i]);
   }
 
   blocos[0].tocar();
@@ -69,12 +79,14 @@ function setup() {
 function draw() {
 
   background(bkgImg);
-  blocos[blocoAtual].mostrar();
   image(btProxImg, btProxImgVetor.x, btProxImgVetor.y, 50, 50);
   push();
   rotate(180);
   image(btVoltarImg, -btVoltarImgVetor.x, -btVoltarImgVetor.y, 50, 50);
   pop();
+  textAlign(CENTER);
+  blocos[blocoAtual].mostrar();
+  blocos2[blocoAtual2].mostrar();
   //image(btSomImg, btSomImgVetor.x, btSomImgVetor.y, 50, 50);
 
 }
@@ -85,26 +97,30 @@ function mousePressed() {
   var centroImgY = btVoltarImgVetor.y + btVoltarImg.height / 6 - 75;
   var distancia = dist(mouseX, mouseY, centroImgX, centroImgY);
 
-  if (distancia < 50) {
+  if(distancia < 50) {
     blocoAtual--;
-    if (blocoAtual < 0) {
-      blocoAtual = numBlocos - 1;
+    blocoAtual2--;
+    if(blocoAtual < 0) {
+      blocoAtual = numBlocos-1;
+      blocoAtual2 = numBlocos-1;
     }
-
     blocos[blocoAtual].tocar();
+    //blocos[blocoAtual2].tocar();
   }
 
   centroImgX = btProxImgVetor.x + btProxImg.width / 4 - 20;
   centroImgY = btProxImgVetor.y + btProxImg.height / 6 - 24;
   distancia = dist(mouseX, mouseY, centroImgX, centroImgY);
 
-  if (distancia < 50) {
+  if(distancia < 50) {
     blocoAtual++;
-    if (blocoAtual > numBlocos - 1) {
+    blocoAtual2++;
+    if(blocoAtual > numBlocos-1) {
       blocoAtual = 0;
+      blocoAtual2 = 0;
     }
-
     blocos[blocoAtual].tocar();
+    //blocos[blocoAtual2].tocar();
   }
 
   //var inicioBtSomX = btSomImgVetor.x;
@@ -134,14 +150,40 @@ class Bloco {
     var alturaPalavras = 50;
     var scl = 80;
     textAlign(CENTER);
-    text(this.palavraQuebrada, 34 * (innerWidth / scl), alturaPalavras * (innerHeight / scl)); //palavra de baixo
+    text(this.palavraQuebrada, 38 * (innerWidth / scl), alturaPalavras * (innerHeight / scl)); //palavra de baixo
     textSize(100);
-    text(this.palavra, 34 * (innerWidth / scl), 29 * (innerHeight / scl)); //palavra de cima
+    text(this.palavra, 38 * (innerWidth / scl), 34 * (innerHeight / scl)); //palavra de cima
     fill(0);
   }
 
   tocar() {
     console.log('tocou');
+  }
+
+}
+
+class Bloco2 {
+
+  constructor(tipo) {
+    this.tipo = tipo;
+    //this.palavrasQuebrada = palavrasQuebrada;
+  }
+
+
+  mostrar() {
+    textSize(85);
+    fill(255);
+    var alturaPalavras = 50;
+    var scl = 80;
+    
+    //var t1 = text(this.palavrasQuebrada, 35 * (innerWidth / scl), alturaPalavras * (innerHeight / scl));
+    textSize(30);
+    text(this.tipo, 22 * (innerWidth / scl), 20 * (innerHeight / scl));
+    fill(0);
+  }
+
+  tocar() {
+    console.log("tocou");
   }
 
 }

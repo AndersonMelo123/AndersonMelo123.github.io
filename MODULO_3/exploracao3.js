@@ -1,9 +1,43 @@
 
 
-var silabas = ["qua", "gue", "bra", "cra", "dra", "fru", "gra", "pra", "tra", "vro",
+var silabas = ["Aquário", "Foguete", "Braço", "Cravo", "Dragão", "Frutas", "Gravata", "Prato", "Trator", "Livro",
+                "Blusa", "Clara", "Flecha", "Globo", "Placa", "Atleta", "Chá", "Aranha",
+                "Ilha", "Anta", "Orca", "Escada", "Alface", "Nuvens", "Amendoim"];
+
+
+var sil = ["qua", "gue", "bra", "cra", "dra", "fru", "gra", "pra", "tra", "vro",
                 "blu", "cla", "fle", "glo", "pla", "tle", "cha", "nha",
                 "lha", "an", "or", "es", "al", "vens", "im"];
 
+
+var palavras = [
+"qua", "que", "qui", "   ", "   ",
+"gua", "gue", "gui", "   ", "   ",
+"bra", "bre", "bri", "bro", "bru",
+"cra", "cre", "cri", "cro", "cru",
+"dra", "dre", "dri", "dro", "dru",
+"fra", "fre", "fri", "fro", "fru",
+"gra", "gre", "gri", "gro", "gru",
+"pra", "pre", "pri", "pro", "pru",
+"tra", "tre", "tri", "tro", "tru",
+"vra", "vre", "vro", "   ", "   ",
+"bla", "ble", "bli", "blo", "blu",
+"cla", "cle", "cli", "clo", "clu",
+"fla", "fle", "fli", "flo", "flu",
+"gla", "gli", "glo", "glu", "   ",
+"pla", "ple", "pli", "plo", "plu",
+"tla", "tle", "   ", "   ", "   ",
+"cha", "che", "chi", "cho", "chu",
+"nha", "nhe", "nhi", "nho", "nhu",
+"lha","lhe","lhi","lho","lhu",
+"an","en","in","on","un",
+"ar","er","ir","or","ur",
+"as","es","is","os","us", 
+"al","el","il", "   ", "   ",
+"as","es","is", "   ", "   ",
+"al","el","il", "   ", "   ",
+
+];
 
 var aquario, livro, gravata, prato,
     foguete, braço, fruta,
@@ -22,7 +56,11 @@ var posCerta = [1, 1, 1, 1, 1,
 
 var sons = [];
 var blocoAtual = 0;
+var blocoAtual2 = 0;
+
 var blocos = [];
+var blocos2 = [];
+
 var numBlocos = 25;
 
 var bkgImg;
@@ -84,14 +122,9 @@ function setup() {
   btVoltarImgVetor = createVector((width / 16) * 11,(innerHeight / 9.9) * 3.3);
 
   for(var i = 0; i < numBlocos; i++) {
-    blocos[i] = new Bloco(silabas[i], opcoesPorSilaba[i]);
+    blocos[i] = new Bloco(silabas[i], opcoesPorSilaba[i], palavras[5*i], palavras[5*i+1], palavras[5*i+2], palavras[5*i+3], palavras[5*i+4]);
+    blocos2[i] = new Bloco2(sil[i]); 
   }
-
-  //somErro = loadSound("../RECURSOS/AUDIOS/erro.mp3");
-
-  //somErro.setVolume(0.7);
-
-  // blocos[0].tocar();
 
 }
 
@@ -106,20 +139,29 @@ function draw() {
   //image(btSomImg, btSomImgVetor.x, btSomImgVetor.y, 50, 50);
   textAlign(CENTER);
   blocos[blocoAtual].mostrar();
+  blocos2[blocoAtual2].mostrar();
 
 }
 
 function avancarBloco() {
   blocoAtual++;
+  blocoAtual2++;
   if(blocoAtual > numBlocos-1) {
     blocoAtual = 0;
+  }
+  if(blocoAtual2 > numBlocos-1) {
+    blocoAtual2= 0;
   }
 }
 
 function voltarBloco() {
   blocoAtual--;
+  blocoAtual2--;
   if(blocoAtual < 0) {
     blocoAtual = numBlocos-1;
+  }
+  if(blocoAtual2 < 0) {
+    blocoAtual2 = numBlocos-1;
   }
 }
 
@@ -141,12 +183,6 @@ function mousePressed() {
   if(distancia < 50) {
     avancarBloco();
   }
-
-  //var inicioBtSomX = btSomImgVetor.x;
-  //var inicioBtSomY = btSomImgVetor.y;
-
-  //var fimBtSomX = btSomImgVetor.x + 50;
-  //var fimBtSomY = btSomImgVetor.y + 50;
 
   if(mouseX > inicioBtSomX
     && mouseX < fimBtSomX
@@ -200,40 +236,88 @@ function mousePressed() {
 
 class Bloco {
 
-  constructor(silaba, opcoes) {
+  constructor(silaba, opcoes, palavra1, palavra2, palavra3, palavra4, palavra5) {
 
     this.silaba = silaba;
     //this.posCertaArray = posCertaArray;
     this.opcoes = opcoes;
+    this.palavra1 = palavra1;
+    this.palavra2 = palavra2;
+    this.palavra3 = palavra3;
+    this.palavra4 = palavra4;
+    this.palavra5 = palavra5;
     this.pos = 25;
 
-    this.p1 = createVector(36*(innerWidth / 80), 40*(innerHeight / 80));
-    //this.p2 = createVector(30*(innerWidth / 80), 40*(innerHeight / 80)); //figuras
-    //this.p3 = createVector(40*(innerWidth / 80), 40*(innerHeight / 80));
-    //this.p4 = createVector(50*(innerWidth / 80), 40*(innerHeight / 80));
+    this.p1 = createVector(36*(innerWidth / 80), 33*(innerHeight / 80));
 
     this.tamanho = 120;
 
-    this.posSilaba = createVector(40*(innerWidth / 80), 30*(innerHeight / 80));
+    this.posSilaba = createVector(40*(innerWidth / 80), 26*(innerHeight / 80));
 
   }
 
   mostrar() {
 
-    textSize(90);
+    textSize(80);
+    fill(255);
+    text(this.silaba, this.posSilaba.x, this.posSilaba.y);
+
+    this.opcoes[0].resize(170, 160);
+
+    var alturaPalavras = 32;
+    var scl = 80;
+    var t1 = 
+    text(this.palavra1, 23 * (innerWidth / scl), (-3 + alturaPalavras) * (innerHeight / scl)); //palavras do lado
+    text(this.palavra2, 23 * (innerWidth / scl), (6 + alturaPalavras) * (innerHeight / scl));
+    text(this.palavra3, 23 * (innerWidth / scl), (15 + alturaPalavras) * (innerHeight / scl));
+    text(this.palavra4, 23 * (innerWidth / scl), (24 + alturaPalavras) * (innerHeight / scl));
+    text(this.palavra5, 23 * (innerWidth / scl), (33 + alturaPalavras) * (innerHeight / scl));
+
+    image(this.opcoes[0], this.p1.x, this.p1.y);
+    fill(255);
+
+  }
+
+  escolher(posicao) {
+    console.log(posicao);
+    console.log(this.posCertaArray);
+    if(posicao-1 == this.posCertaArray-1) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
+  tocarCerto() {
+    console.log("certo");
+  }
+
+  tocarErrado() {
+    console.log("errado");
+    somErro.play();
+  }
+}
+
+class Bloco2 {
+
+  constructor(silaba) {
+
+    this.silaba = silaba;
+    this.pos = 25;
+
+    this.p1 = createVector(36*(innerWidth / 80), 40*(innerHeight / 80));
+    this.tamanho = 120;
+
+    this.posSilaba = createVector(40*(innerWidth / 80), 64*(innerHeight / 80));
+
+  }
+
+  mostrar() {
+
+    textSize(85);
     text(this.silaba, this.posSilaba.x, this.posSilaba.y);
 
     fill(0);
-
-    this.opcoes[0].resize(170, 160);
-    //this.opcoes[1].resize(120, 120);
-    //this.opcoes[2].resize(120, 120);
-    //this.opcoes[3].resize(120, 120);
-
-    image(this.opcoes[0], this.p1.x, this.p1.y);
-    //image(this.opcoes[1], this.p2.x, this.p2.y);
-    //image(this.opcoes[2], this.p3.x, this.p3.y);
-    //image(this.opcoes[3], this.p4.x, this.p4.y);
 
     fill(255);
 

@@ -10,16 +10,22 @@ Uso de classes para criação de bloco de informação.
 */
 
 var listaPalavrasArray = [
-  "dar", "ir", "rir", "ser", "ter", "ver", "crer", "pôr", "ler",
+  "dar", "ir", "rir", "ser", "ter", "ver", "crer", "pôr", "ler", "voz",
   "cantar", "falar", "bater", "fazer", "virar", "errar", "lutar", "unir", "comer", "saber",
   "estudar", "receber", "aprender", "proteger", "começar", "colocar", "precisar", "conversar", "trabalhar", "repetir",
   "acontecer", "participar", "apresentar", "aproveitar", "considerar", "despedir", "reconhecer", "desocupar", "comunicar", "desaparecer",
 ];
 
+var tipo = [
+  "Monossílabas", "Monossílabas", "Monossílabas", "Monossílabas", "Monossílabas", "Monossílabas", "Monossílabas", "Monossílabas", "Monossílabas", "Monossílabas",
+  "Dissílabas", "Dissílabas", "Dissílabas", "Dissílabas", "Dissílabas", "Dissílabas", "Dissílabas", "Dissílabas", "Dissílabas", "Dissílabas",
+  "Trissílabas", "Trissílabas", "Trissílabas", "Trissílabas", "Trissílabas", "Trissílabas", "Trissílabas", "Trissílabas", "Trissílabas", "Trissílabas",
+  "Polissílabas", "Polissílabas", "Polissílabas", "Polissílabas", "Polissílabas", "Polissílabas", "Polissílabas", "Polissílabas", "Polissílabas", "Polissílabas", 
+];
 
 
 var palavrasQuebradas = [
-  "dar", "ir", "rir", "ser", "ter", "ver", "crer", "pôr", "ler",
+  "dar", "ir", "rir", "ser", "ter", "ver", "crer", "pôr", "ler", "voz",
   "can - tar", "fa - lar", "ba - ter", "fa - zer", "vi - rar", "er - rar", "lu - tar", "u - nir", "co - mer", "sa - ber",
   "es - tu - dar", "re - ce - ber", "a - pren - der", "pro - te - ger", "co - me - çar", "co - lo - car", "pre - ci - sar", "con - ver - sar", "tra - ba - lhar", "re - pe - tir",
   "a - con - te - cer", "par - ti - ci - par", "a - pre - sen - tar", "a - pro - vei - tar", "con - si - de - rar", "des - pe - dir", "re - co - nhe - cer", "de - so - cu - par", "co - mu - ni - car", "de - sa - pa - re - cer",
@@ -51,11 +57,13 @@ var btVoltarImgVetor;
 
 var btSomImgVetor;
 
-var numBlocos = 39;
+var numBlocos = 40;
 
 var blocoAtual = 0;
+var blocoAtual2 = 0;
 
 var blocos = [];
+var blocos2 = [];
 
 function preload() {
   bkgImg = loadImage("../RECURSOS/IMAGENS/mod2-exp2.png");
@@ -78,6 +86,7 @@ function setup() {
 
   for(var i = 0; i < numBlocos; i++) {
     blocos[i] = new Bloco(listaPalavrasArray[i], palavrasQuebradas[i]);
+    blocos2[i] = new Bloco2(tipo[i]);
   }
 
   blocos[0].tocar();
@@ -86,12 +95,14 @@ function setup() {
 function draw() {
 
   background(bkgImg);
-  blocos[blocoAtual].mostrar();
   image(btProxImg, btProxImgVetor.x, btProxImgVetor.y, 50, 50);
   push();
   rotate(180);
   image(btVoltarImg, -btVoltarImgVetor.x, -btVoltarImgVetor.y, 50, 50);
   pop();
+  textAlign(CENTER);
+  blocos[blocoAtual].mostrar();
+  blocos2[blocoAtual2].mostrar();
   //image(btSomImg, btSomImgVetor.x, btSomImgVetor.y, 50, 50);
 
 }
@@ -105,10 +116,13 @@ function mousePressed() {
 
   if(distancia < 50) {
     blocoAtual--;
+    blocoAtual2--;
     if(blocoAtual < 0) {
       blocoAtual = numBlocos-1;
+      blocoAtual2 = numBlocos-1;
     }
     blocos[blocoAtual].tocar();
+    //blocos[blocoAtual2].tocar();
   }
 
   centroImgX =  btProxImgVetor.x + btProxImg.width/4 -20;
@@ -117,10 +131,13 @@ function mousePressed() {
 
   if(distancia < 50) {
     blocoAtual++;
+    blocoAtual2++;
     if(blocoAtual > numBlocos-1) {
       blocoAtual = 0;
+      blocoAtual2 = 0;
     }
     blocos[blocoAtual].tocar();
+    //blocos[blocoAtual2].tocar();
   }
   
   //var inicioBtSomX = btSomImgVetor.x;
@@ -152,7 +169,33 @@ class Bloco {
     textAlign(CENTER);
     var t1 = text(this.palavrasQuebrada, 35 * (innerWidth / scl), alturaPalavras * (innerHeight / scl));
     textSize(100);
-    text(this.palavra, 34 * (innerWidth / scl), 25 * (innerHeight / scl));
+    text(this.palavra, 34 * (innerWidth / scl), 33 * (innerHeight / scl));
+    fill(0);
+  }
+
+  tocar() {
+    console.log("tocou");
+  }
+
+}
+
+class Bloco2 {
+
+  constructor(tipo) {
+    this.tipo = tipo;
+    //this.palavrasQuebrada = palavrasQuebrada;
+  }
+
+
+  mostrar() {
+    textSize(85);
+    fill(255);
+    var alturaPalavras = 50;
+    var scl = 80;
+    
+    //var t1 = text(this.palavrasQuebrada, 35 * (innerWidth / scl), alturaPalavras * (innerHeight / scl));
+    textSize(30);
+    text(this.tipo, 17 * (innerWidth / scl), 20 * (innerHeight / scl));
     fill(0);
   }
 

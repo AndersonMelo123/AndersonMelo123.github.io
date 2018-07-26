@@ -17,6 +17,8 @@ var btProxImgVetor;
 var btSomImg;
 var somErro;
 
+var somSucesso;
+
 function preload() {
 
   bkgImg = loadImage("../RECURSOS/IMAGENS/mod2-lic1.png");
@@ -42,8 +44,10 @@ function setup() {
   }
 
   somErro = loadSound("../RECURSOS/AUDIOS/erro.mp3");
+  somSucesso = loadSound("../RECURSOS/AUDIOS/sucesso.mp3");
 
   somErro.setVolume(0.7);
+  somSucesso.setVolume(0.7);
 
   // blocos[0].tocar();
 
@@ -191,6 +195,7 @@ class Bloco {
 
   tocarCerto() {
     console.log("certo");
+    somSucesso.play();
   }
 
   tocarErrado() {

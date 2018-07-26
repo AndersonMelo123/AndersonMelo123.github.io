@@ -3,7 +3,7 @@
 var silabas = ["BRA", "TRO", "CLE", "VRO", "QUE", "FLO", "CHU", "BRA", "TRA", "PRA"];
 
 
-var braco, livro, toalha, prato, revista, tronco, porta, folha, queijo, barco, bicicleta, flor, quadro, arvore, porta, tesoura, chuva, isqueiro, chocolate, cobra, travesseiro, palhaco, janela, sapato, planta;
+var braco, livro, toalha, prato, revista, trofeu, porta, folha, leque, barco, bicicleta, flor, quadro, arvore, porta, tesoura, chuva, isqueiro, chocolate, cobra, travesseiro, palhaco, janela, sapato, planta;
 
 var opcoesPorSilaba;
 
@@ -20,6 +20,7 @@ var btProxImgVetor;
 var btSomImg;
 
 var somErro;
+var somSucesso;
 
 
 function preload() {
@@ -27,14 +28,14 @@ function preload() {
   braco     = loadImage("../RECURSOS/IMAGENS/BracoF.png");
   livro     = loadImage("../RECURSOS/IMAGENS/LivroF.png");
   toalha    = loadImage("../RECURSOS/IMAGENS/ToalhaF.png");
-  prato     = loadImage("../RECURSOS/IMAGENS/PratoF.png");
+  prato     = loadImage("../RECURSOS/IMAGENS/prato.png");
 
   revista   = loadImage("../RECURSOS/IMAGENS/RevistaF2.png");
-  tronco    = loadImage("../RECURSOS/IMAGENS/TroncoF.png");
+  trofeu    = loadImage("../RECURSOS/IMAGENS/trofeu.png");
   porta     = loadImage("../RECURSOS/IMAGENS/PortaF.png");
   folha     = loadImage("../RECURSOS/IMAGENS/FolhaF.png");
 
-  queijo    = loadImage("../RECURSOS/IMAGENS/QueijoF2.png");
+  leque    = loadImage("../RECURSOS/IMAGENS/leque.png");
   barco     = loadImage("../RECURSOS/IMAGENS/BarcoF.png");
   bicicleta = loadImage("../RECURSOS/IMAGENS/BicicletaF.png");
   flor      = loadImage("../RECURSOS/IMAGENS/FlorF.png");
@@ -72,7 +73,7 @@ function setup() {
   textAlign(CENTER);
   createCanvas(innerWidth, innerHeight);
 
-  var opcoesPorSilaba = [[braco, livro, toalha, prato], [revista, tronco, porta, folha], [queijo, barco, bicicleta, flor], [quadro, livro, arvore, prato], [porta, tesoura, prato, queijo], [flor, livro, folha, tesoura], [toalha, chuva, quadro, arvore], [isqueiro, chocolate, cobra, porta], [travesseiro, palhaco, janela, sapato], [toalha, planta, bicicleta, prato]];
+  var opcoesPorSilaba = [[braco, livro, toalha, prato], [revista, trofeu, porta, folha], [leque, barco, bicicleta, flor], [quadro, livro, arvore, prato], [porta, tesoura, prato, leque], [flor, livro, folha, tesoura], [toalha, chuva, quadro, arvore], [isqueiro, chocolate, cobra, porta], [travesseiro, palhaco, janela, sapato], [toalha, planta, bicicleta, prato]];
 
   btProxImgVetor = createVector((width / 15) * 10.6, (innerHeight / 13) * 3.3);
   btSomImgVetor = createVector((width / 43) * 10.6, (innerHeight / 9) * 2);
@@ -83,9 +84,10 @@ function setup() {
   }
 
   somErro = loadSound("../RECURSOS/AUDIOS/erro.mp3");
+  somSucesso = loadSound("../RECURSOS/AUDIOS/sucesso.mp3");
 
   somErro.setVolume(0.7);
-
+  somSucesso.setVolume(0.7);
   // blocos[0].tocar();
 
 }
@@ -246,6 +248,7 @@ class Bloco {
 
   tocarCerto() {
     console.log("certo");
+    somSucesso.play();
   }
 
   tocarErrado() {

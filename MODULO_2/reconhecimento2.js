@@ -14,6 +14,7 @@ var btProxImgVetor;
 var btSomImg;
 
 var somErro;
+var somSucesso;
 
 function preload() {
 
@@ -73,7 +74,10 @@ function setup() {
   }
 
   somErro = loadSound("../RECURSOS/AUDIOS/erro.mp3");
+  somSucesso = loadSound("../RECURSOS/AUDIOS/sucesso.mp3");
+
   somErro.setVolume(0.7);
+  somSucesso.setVolume(0.7);
 
 
   // blocos[0].tocar();
@@ -210,10 +214,10 @@ class Bloco {
 
     fill(0);
 
-    this.opcoes[0].resize(160, 160);
-    this.opcoes[1].resize(160, 160);
-    this.opcoes[2].resize(160, 160);
-    this.opcoes[3].resize(160, 160);
+    this.opcoes[0].resize(150, 150);
+    this.opcoes[1].resize(150, 150);
+    this.opcoes[2].resize(150, 150);
+    this.opcoes[3].resize(150, 150);
 
     image(this.opcoes[0], this.p1.x, this.p1.y);
     image(this.opcoes[1], this.p2.x, this.p2.y);
@@ -236,6 +240,7 @@ class Bloco {
 
   tocarCerto() {
     console.log("certo");
+    somSucesso.play();
   }
 
   tocarErrado() {

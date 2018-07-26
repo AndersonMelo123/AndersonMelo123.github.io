@@ -66,6 +66,7 @@ var input4;
 var button;
 
 var somErro;
+var somSucesso;
 
 function preload() {
   bkgImg = loadImage('../RECURSOS/IMAGENS/mod2-rec3.png');
@@ -101,8 +102,10 @@ function setup() {
   }
 
   somErro = loadSound("../RECURSOS/AUDIOS/erro.mp3");
+  somSucesso = loadSound("../RECURSOS/AUDIOS/sucesso.mp3");
 
   somErro.setVolume(0.7);
+  somSucesso.setVolume(0.7);
 
   // blocos[0].tocar();
 
@@ -232,7 +235,7 @@ class Bloco {
 
     this.tamanho = 120;
 
-    this.posSilaba = createVector(42 * (innerWidth / 80), 20 * (innerHeight / 54)); // silaba de cima
+    this.posSilaba = createVector(40 * (innerWidth / 80), 20 * (innerHeight / 54)); // silaba de cima
 
   }
 
@@ -252,6 +255,7 @@ class Bloco {
       if (entrada1.toUpperCase() == this.silabas[0] &&
           entrada2.toUpperCase() == this.silabas[1]) {
         console.log('certo');
+        somSucesso.play();
         return true;
       } else {
         console.log('errado');
@@ -265,6 +269,7 @@ class Bloco {
           entrada2.toUpperCase() == this.silabas[1] &&
           entrada3.toUpperCase() == this.silabas[2]) {
         console.log('certo');
+        somSucesso.play();
         return true;
       } else {
         console.log('errado');
@@ -280,6 +285,7 @@ class Bloco {
           entrada4.toUpperCase() == this.silabas[3]) {
 
         console.log('certo');
+        somSucesso.play();
         return true;
       } else {
         console.log('errado');
@@ -296,6 +302,7 @@ class Bloco {
         entrada4.toUpperCase() == this.silabas[3]) {
 
       console.log('certo');
+      somSucesso.play();
       return true;
     } else {
       console.log('errado');
@@ -306,6 +313,7 @@ class Bloco {
 
   tocarCerto() {
     console.log('certo');
+    somSucesso.play();
   }
 
   tocarErrado() {

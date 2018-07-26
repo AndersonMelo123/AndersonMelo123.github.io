@@ -78,7 +78,7 @@
 	width: 100%;
 	background-repeat: repeat;
 	background-attachment: fixed;
-	background-image: url("../IMAGENS/fundo2.png");
+	background-image: url("../IMAGENS/back-mapa.jpg");
 	background-color: #1C1C1C;
 	background-size: contain;
 }#homeMod div{
@@ -122,6 +122,10 @@
    font-family: sans-serif;
    color: #FEFEFE;
 }.button2:hover {
+    background-color:#CCFFFF ;
+    color: #000000;
+
+}.button:OK {
     background-color:#CCFFFF ;
     color: #000000;
 } #fonte{

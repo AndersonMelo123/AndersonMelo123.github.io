@@ -14,7 +14,7 @@ var palavras = [
   "Mi___ca",
   "Fer__",
   "____tal",
-  "Vas___ra",
+  "Vas___ura",
   "As__do",
   "Ter__",
   "___lho",
@@ -25,9 +25,9 @@ var opcoesPorPalavra = [
   ["mon", "gen", "pren", "cer"],
   ["cre", "gra", "tre", "lhe"],
   ["nie", "nhe", "be", "vi"],
-  ["lhi", "gra", "brir", "tro"],
+  ["lhi", "gra", "brir", "pru"],
   ["rme", "cer", "mar", "brar"],
-  ["si", "ci", "tra", "ve"],
+  ["sí", "ci", "tra", "ve"],
   ["pra", "cho", "lhe", "tru"],
   ["tra", "xa", "cha", "vra"],
   ["lho", "to", "se", "di"],
@@ -59,6 +59,7 @@ var btSomImg;
 var tamanhoCirculo = 160;
 
 var somErro;
+var somSucesso;
 
 
 
@@ -87,8 +88,10 @@ function setup() {
   }
 
   somErro = loadSound("../RECURSOS/AUDIOS/erro.mp3");
+  somSucesso = loadSound("../RECURSOS/AUDIOS/sucesso.mp3");
 
   somErro.setVolume(0.7);
+  somSucesso.setVolume(0.7);
 
   // blocos[0].tocar();
 
@@ -236,6 +239,7 @@ class Bloco {
 
   tocarCerto() {
     console.log("certo");
+    somSucesso.play();
   }
 
   tocarErrado() {

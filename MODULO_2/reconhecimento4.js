@@ -105,6 +105,7 @@ var posInput;
 var input, button;
 
 var somErro;
+var somSucesso;
 
 function preload() {
   bkgImg = loadImage("../RECURSOS/IMAGENS/mod2-rec4.png");
@@ -141,8 +142,10 @@ function setup() {
 
 
   somErro = loadSound("../RECURSOS/AUDIOS/erro.mp3");
+  somSucesso = loadSound("../RECURSOS/AUDIOS/sucesso.mp3");
 
   somErro.setVolume(0.7);
+  somSucesso.setVolume(0.7);
 
 
 
@@ -331,6 +334,7 @@ class Bloco {
   escolher(entrada) {
     if (entrada.toUpperCase() == this.palavra) {
       console.log("certo");
+      somSucesso.play();
       return true;
     } else {
       console.log("errado");
@@ -341,6 +345,7 @@ class Bloco {
 
   tocarCerto() {
     console.log("certo");
+    somSucesso.play();
   }
 
   tocarErrado() {

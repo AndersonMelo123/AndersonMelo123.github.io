@@ -65,6 +65,7 @@ var posInput;
 var input, button;
 
 var somErro;
+var somSucesso;
 
 
 function preload() {
@@ -82,7 +83,7 @@ function setup() {
   textAlign(CENTER);
   createCanvas(innerWidth, innerHeight);
 
-  posInput = createVector((innerWidth / 12) * 4.5, (innerHeight / 11) * 7); //botao
+  posInput = createVector((innerWidth / 12) * 4.8, (innerHeight / 11) * 7); //botao
 
   input = createInput();
   input.position(posInput.x, posInput.y);
@@ -102,8 +103,10 @@ function setup() {
 
 
   somErro = loadSound("../RECURSOS/AUDIOS/erro.mp3");
+  somSucesso = loadSound("../RECURSOS/AUDIOS/sucesso.mp3");
 
   somErro.setVolume(0.7);
+  somSucesso.setVolume(0.7);
 
 
   // blocos[0].tocar();
@@ -291,6 +294,7 @@ class Bloco {
   escolher(entrada) {
     if (entrada.toUpperCase() == this.palavra) {
       console.log("certo");
+      somSucesso.play();
       return true;
     } else {
       console.log("errado");
@@ -301,6 +305,7 @@ class Bloco {
 
   tocarCerto() {
     console.log("certo");
+    somSucesso.play();
   }
 
   tocarErrado() {
