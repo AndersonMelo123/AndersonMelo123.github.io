@@ -115,7 +115,7 @@ function setup() {
 
   var opcoesPorSilaba = [[aquario], [foguete], [braço], [flor], [dragao], [fruta], [gravata], [prato2], [trator], [livro],
                          [blusa], [clara], [flecha], [globo], [placa], [atleta], [chicara], [aranha], [ilha],
-                         [anta], [orca], [escada], [alface], [nuvens], [amendoim],];
+                         [anta], [orca], [escada], [alface], [nuvens], [amendoim]];
 
   btProxImgVetor = createVector((width / 15) * 10.6, (innerHeight / 13) * 3.3);
   //btSomImgVetor = createVector((width / 43) * 10.6, (innerHeight / 9) * 2);

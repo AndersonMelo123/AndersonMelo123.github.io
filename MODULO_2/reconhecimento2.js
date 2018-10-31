@@ -1,4 +1,4 @@
-var silabas = ["CA","JA","BO","ES","TE","NU","DA","LI","FO","GA","ZI","XI","ME","PO","RE","VA","HO","BA","A","U"];
+var silabas = ["CA","JA","BO","ES","TE","NU","DA","LI","FO","GAR","ZOL","XÍ","ME","POR","RE","VE","HOS","BAR","A","U"];
 var balde, casa, mesa, dado, sapato, vaca, janela, xicara, alicate, revista, nuvem, barco, bola, escada, fogao, garfo, telefone, hospital, flor, isqueiro, ketchup, fogo, livro, ovo, queijo, ziper, escova, uva, porta, vaso;
 var opcoesPorSilaba;
 var posCerta = [0, 1, 3, 1, 2, 0, 2, 3, 2, 3, 0, 2, 3, 1, 3, 3, 0, 2, 3, 0];
@@ -38,12 +38,12 @@ function preload() {
   livro     = loadImage("../RECURSOS/IMAGENS/LivroF.png");
   ovo       = loadImage("../RECURSOS/IMAGENS/OvoF2.png");
   queijo    = loadImage("../RECURSOS/IMAGENS/QueijoF2.png");
-  ziper     = loadImage("../RECURSOS/IMAGENS/ZiperF2.png");
+  ziper     = loadImage("../RECURSOS/IMAGENS/anzol.png");
   uva       = loadImage("../RECURSOS/IMAGENS/UvaF2.png");
   porta     = loadImage("../RECURSOS/IMAGENS/PortaF.png");
   flor      = loadImage("../RECURSOS/IMAGENS/FlorF.png");
   escova    = loadImage("../RECURSOS/IMAGENS/EscovaF.png");
-  vaso      = loadImage("../RECURSOS/IMAGENS/VasoF.png");
+  vaso      = loadImage("../RECURSOS/IMAGENS/vela.png");
   fogo      = loadImage("../RECURSOS/IMAGENS/FogoF.png");
   bola      = loadImage("../RECURSOS/IMAGENS/BolaF.png");
   barco     = loadImage("../RECURSOS/IMAGENS/BarcoF.png");

@@ -65,8 +65,8 @@ function setup() {
                          [horoscopo1], [horoscopo2], [horoscopo3], 
                          [quadrinhos1], [quadrinhos2], [quadrinhos3]];
 
-  btProxImgVetor = createVector((width / 15) * 10.6, (innerHeight / 13) * 10.8);
-  btVoltarImgVetor = createVector((width / 16) * 11,(innerHeight / 9.9) * 9);
+  btProxImgVetor = createVector((width / 14.5) * 10.6, (innerHeight / 12.5) * 10.8);
+  btVoltarImgVetor = createVector((width / 15.5) * 11,(innerHeight / 9.5) * 9);
 
   for(var i = 0; i < numBlocos; i++) {
     blocos[i] = new Bloco(silabas[i], opcoesPorSilaba[i]);
@@ -177,11 +177,11 @@ class Bloco {
     this.opcoes = opcoes;
     this.pos = 12;
 
-    this.p1 = createVector(22*(innerWidth / 80), 30*(innerHeight / 80)); // distancia horizontal da imagem
+    this.p1 = createVector(20*(innerWidth / 80), 22*(innerHeight / 80)); // distancia horizontal da imagem
 
     this.tamanho = 120;
 
-    this.posSilaba = createVector(39*(innerWidth / 80), 26*(innerHeight / 80)); // distancia horizontal da palavra de cima
+    this.posSilaba = createVector(39*(innerWidth / 80), 21*(innerHeight / 80)); // distancia horizontal da palavra de cima
 
   }
 
@@ -191,7 +191,7 @@ class Bloco {
     fill(255);
     text(this.silaba, this.posSilaba.x, this.posSilaba.y);
 
-    this.opcoes[0].resize(600, 330); // tamanho da imagem L x A
+    this.opcoes[0].resize(680, 410); // tamanho da imagem L x A
 
     var alturaPalavras = 32;
     var scl = 80;

@@ -40,9 +40,9 @@ function preload() {
   manchete4          = loadImage("../RECURSOS/IMAGENS/manchete4.png");
   manchete5          = loadImage("../RECURSOS/IMAGENS/manchete5.png");
   manchete6          = loadImage("../RECURSOS/IMAGENS/manchete6.png");
-  receita1           = loadImage("../RECURSOS/IMAGENS/receita1.png");
+  receita1           = loadImage("../RECURSOS/IMAGENS/receita.png");
   receita2           = loadImage("../RECURSOS/IMAGENS/receita2.png");
-  manual1            = loadImage("../RECURSOS/IMAGENS/manual1.png");
+  manual1            = loadImage("../RECURSOS/IMAGENS/manual.png");
   manual2            = loadImage("../RECURSOS/IMAGENS/manual2.png");
   
   bkgImg             = loadImage("../RECURSOS/IMAGENS/mod4-exp2.png");
@@ -63,8 +63,8 @@ function setup() {
                          [receita1], [receita2], 
                          [manual1], [manual2]];
 
-  btProxImgVetor = createVector((width / 15) * 10.6, (innerHeight / 13) * 10.8);
-  btVoltarImgVetor = createVector((width / 16) * 11,(innerHeight / 9.9) * 9);
+  btProxImgVetor = createVector((width / 14.5) * 10.6, (innerHeight / 13) * 10.8);
+  btVoltarImgVetor = createVector((width / 15.5) * 11,(innerHeight / 9.9) * 9);
 
   for(var i = 0; i < numBlocos; i++) {
     blocos[i] = new Bloco(silabas[i], opcoesPorSilaba[i]);
@@ -175,11 +175,11 @@ class Bloco {
     this.opcoes = opcoes;
     this.pos = 10;
 
-    this.p1 = createVector(30*(innerWidth / 80), 30*(innerHeight / 80)); // distancia horizontal da imagem
+    this.p1 = createVector(28*(innerWidth / 80), 23*(innerHeight / 80)); // distancia horizontal da imagem
 
     this.tamanho = 120;
 
-    this.posSilaba = createVector(39*(innerWidth / 80), 26*(innerHeight / 80)); // distancia horizontal da palavra de cima
+    this.posSilaba = createVector(39*(innerWidth / 80), 21*(innerHeight / 80)); // distancia horizontal da palavra de cima 1 - hor / 2 - vert
 
   }
 
@@ -189,7 +189,7 @@ class Bloco {
     fill(255);
     text(this.silaba, this.posSilaba.x, this.posSilaba.y);
 
-    this.opcoes[0].resize(345, 335); // tamanho da imagem L x A
+    this.opcoes[0].resize(425, 415); // tamanho da imagem L x A
 
     var alturaPalavras = 32;
     var scl = 80;

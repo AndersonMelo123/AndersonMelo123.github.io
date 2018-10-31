@@ -39,7 +39,7 @@ function preload() {
   notaFiscal         = loadImage("../RECURSOS/IMAGENS/notaFiscal.png");
   cupom              = loadImage("../RECURSOS/IMAGENS/cupom.png");
   certidaoNascimento = loadImage("../RECURSOS/IMAGENS/certidaoNascimento.png");
-  RG                 = loadImage("../RECURSOS/IMAGENS/RG1.png");
+  RG                 = loadImage("../RECURSOS/IMAGENS/RG.png");
   carteiraTrabalho   = loadImage("../RECURSOS/IMAGENS/carteiraTrabalho.png");
   titulo             = loadImage("../RECURSOS/IMAGENS/titulo.png");
   CPF                = loadImage("../RECURSOS/IMAGENS/CPF.png");
@@ -174,21 +174,21 @@ class Bloco {
     this.opcoes = opcoes;
     this.pos = 13;
 
-    this.p1 = createVector(30*(innerWidth / 80), 30*(innerHeight / 80)); // distancia horizontal da imagem
+    this.p1 = createVector(27*(innerWidth / 80), 22*(innerHeight / 80)); // distancia horizontal da imagem
 
     this.tamanho = 120;
 
-    this.posSilaba = createVector(39*(innerWidth / 80), 26*(innerHeight / 80)); // distancia horizontal da palavra de cima
+    this.posSilaba = createVector(39*(innerWidth / 80), 20*(innerHeight / 80)); // distancia horizontal da palavra de cima
 
   }
 
   mostrar() {
 
-    textSize(50); //tamanho do titulo
+    textSize(46); //tamanho do titulo
     fill(255);
     text(this.silaba, this.posSilaba.x, this.posSilaba.y);
 
-    this.opcoes[0].resize(300, 330); // tamanho da imagem
+    this.opcoes[0].resize(400, 430); // tamanho da imagem
 
     var alturaPalavras = 32;
     var scl = 80;
