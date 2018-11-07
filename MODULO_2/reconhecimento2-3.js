@@ -1,13 +1,13 @@
 
 
-var silabas = ["BRA", "TRO", "CLE", "VRO", "QUE", "FLO", "CHU", "BRA", "TRA", "PRA"];
+var silabas = ["BRA", "LHA", "CLE", "VRO", "SOU", "LHO", "CHU", "BRA", "ÇO", "PRA"];
 
 
 var braco, livro, toalha, prato, revista, trofeu, porta, folha, leque, barco, bicicleta, flor, quadro, arvore, porta, tesoura, chuva, isqueiro, chocolate, cobra, travesseiro, palhaco, janela, sapato, planta;
 
 var opcoesPorSilaba;
 
-var posCerta = [1, 2, 3, 2, 4, 1, 2, 3, 1, 4];
+var posCerta = [1, 4, 3, 2, 2, 1, 2, 3, 2, 4];
 
 var sons = [];
 var blocoAtual = 0;
@@ -25,7 +25,7 @@ var somSucesso;
 
 function preload() {
 
-  braco     = loadImage("../RECURSOS/IMAGENS/BracoF.png");
+  braco     = loadImage("../RECURSOS/IMAGENS/braco.png");
   livro     = loadImage("../RECURSOS/IMAGENS/LivroF.png");
   toalha    = loadImage("../RECURSOS/IMAGENS/ToalhaF.png");
   prato     = loadImage("../RECURSOS/IMAGENS/prato.png");
@@ -38,7 +38,7 @@ function preload() {
   leque    = loadImage("../RECURSOS/IMAGENS/leque.png");
   barco     = loadImage("../RECURSOS/IMAGENS/BarcoF.png");
   bicicleta = loadImage("../RECURSOS/IMAGENS/BicicletaF.png");
-  flor      = loadImage("../RECURSOS/IMAGENS/FlorF.png");
+  flor      = loadImage("../RECURSOS/IMAGENS/milho.png");
 
   quadro    = loadImage("../RECURSOS/IMAGENS/QuadroF.png");
   arvore    = loadImage("../RECURSOS/IMAGENS/ArvoreF.png");
@@ -46,13 +46,13 @@ function preload() {
   porta     = loadImage("../RECURSOS/IMAGENS/PortaF.png");
   tesoura   = loadImage("../RECURSOS/IMAGENS/TesouraF.png");
 
-  chuva     = loadImage("../RECURSOS/IMAGENS/ChuvaF.png");
+  chuva     = loadImage("../RECURSOS/IMAGENS/chuveiro.png");
 
   isqueiro  = loadImage("../RECURSOS/IMAGENS/IsqueiroF.png");
   chocolate = loadImage("../RECURSOS/IMAGENS/ChocolateF.png");
   cobra     = loadImage("../RECURSOS/IMAGENS/CobraF.png");
 
-  travesseiro = loadImage("../RECURSOS/IMAGENS/TravesseiroF.png");
+  travesseiro = loadImage("../RECURSOS/IMAGENS/alicate.png");
   palhaco   = loadImage("../RECURSOS/IMAGENS/PalhacoF.png");
   janela    = loadImage("../RECURSOS/IMAGENS/JanelaF.png");
   sapato    = loadImage("../RECURSOS/IMAGENS/SapatoF2.png");

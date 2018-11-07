@@ -8,7 +8,7 @@ var palavras = [
   "JANELA",
   "VACA",
   "ALICATE",
-  "XICARA",
+  "XÍCARA",
   "REVISTA",
   "ESCADA",
   "TELEFONE",
@@ -17,31 +17,31 @@ var palavras = [
   "PORTARIA",
   "VASO",
   "ESCOVA",
-  "ROSADO",
-  "BATIDA"
+  "MORENA",
+  "LARANJA"
 ];
 
 var silabas = [
-  ["Jo", "Be", "I"],
-  ["Be", "Lo", "Ca"],
-  ["Do", "Da"],
-  ["Sa", "Me"],
-  ["Vem", "Nu"],
-  ["Sa", "To", "Pa"],
-  ["La", "Ja", "Ne"],
-  ["Ca", "Va"],
-  ["Li", "Ca", "A", "Te"],
-  ["Xi", "Ra", "Ca"],
-  ["Vis", "Re", "Ta"],
-  ["Ca", "Es", "Da"],
-  ["Te", "Le", "Ne", "Fo"],
-  ["Fo", "Gar"],
-  ["Go", "Fo"],
-  ["Ta", "Por", "Ria"],
-  ["So", "Va"],
-  ["Co", "Es", "Va"],
-  ["Do", "Sa", "Ro"],
-  ["Ti", "Ba", "Da"]
+  ["jo", "be", "i"],
+  ["be", "lo", "ca"],
+  ["do", "da"],
+  ["sa", "me"],
+  ["vem", "nu"],
+  ["sa", "to", "pa"],
+  ["la", "ja", "ne"],
+  ["ca", "va"],
+  ["li", "ca", "a", "te"],
+  ["xí", "ra", "ca"],
+  ["vis", "re", "ta"],
+  ["ca", "es", "da"],
+  ["te", "le", "ne", "fo"],
+  ["fo", "gar"],
+  ["go", "fo"],
+  ["ta", "por", "ria"],
+  ["so", "va"],
+  ["co", "es", "va"],
+  ["re", "mo", "na"],
+  ["ja", "ran", "la"]
 ];
 
 var formasErradas = [
@@ -137,7 +137,7 @@ function setup() {
   btVoltarImgVetor = createVector((innerWidth / 16) * 11, (innerHeight / 10.5) * 3.3);
 
   for (var i = 0; i < numBlocos; i++) {
-    blocos[i] = new Bloco(silabas[i], formasErradas[i], formasCertas[i], palavras[i]);
+    blocos[i] = new Bloco(silabas[i], formasErradas[i], palavras[i]);
   }
 
 
@@ -229,12 +229,12 @@ function mousePressed() {
 
 class Bloco {
 
-  constructor(silabas, erradas, certas, palavra) {
+  constructor(silabas, erradas, palavra) {
 
     this.silabas = silabas;
     this.nSilabas = this.silabas.length;
     this.erradas = erradas;
-    this.certas = certas;
+    //this.certas = certas;
     this.palavra = palavra;
 
     this.alturaPecas = 35;
@@ -244,10 +244,10 @@ class Bloco {
     this.p3 = createVector(42 * (innerWidth / 80), this.alturaPecas * (innerHeight / 80));
     this.p4 = createVector(47 * (innerWidth / 80), this.alturaPecas * (innerHeight / 80));
 
-    this.posSilaba1 = createVector(23 * (innerWidth / 80), 18 * (innerHeight / 80)); //bolinhas
-    this.posSilaba2 = createVector(33 * (innerWidth / 80), 18 * (innerHeight / 80));
-    this.posSilaba3 = createVector(43 * (innerWidth / 80), 18 * (innerHeight / 80));
-    this.posSilaba4 = createVector(53 * (innerWidth / 80), 18 * (innerHeight / 80));
+    this.posSilaba1 = createVector(23 * (innerWidth / 80), 32 * (innerHeight / 80)); //bolinhas
+    this.posSilaba2 = createVector(33 * (innerWidth / 80), 32 * (innerHeight / 80));
+    this.posSilaba3 = createVector(43 * (innerWidth / 80), 32 * (innerHeight / 80));
+    this.posSilaba4 = createVector(53 * (innerWidth / 80), 32 * (innerHeight / 80));
 
     this.posSilaba = [this.posSilaba1, this.posSilaba2, this.posSilaba3, this.posSilaba4];
 
@@ -292,16 +292,16 @@ class Bloco {
     switch (tipo) {
       case 1:
         push();
-        ellipse(posP.x + 40, posP.y + 40, 120, 80);
+        rect(posP.x, posP.y, 120, 80);
         textSize(40);
-        text(silaba, posP.x + 40, posP.y + 50);
+        text(silaba, posP.x + 55, posP.y + 50);
         pop();
         break;
       case 2:
         push();
-        ellipse(posP.x + 40, posP.y + 40, 110, 120);
+        rect(posP.x, posP.y, 120, 80);
         textSize(40);
-        text(silaba, posP.x + 40, posP.y + 50);
+        text(silaba, posP.x + 55, posP.y + 50);
         pop();
         break;
       case 3:
@@ -313,9 +313,9 @@ class Bloco {
         break;
       case 4:
         push();
-        arc(posP.x + 40, posP.y + 80, 160, 160, 180, 0);
+        rect(posP.x, posP.y, 120, 80);
         textSize(40);
-        text(silaba, posP.x + 40, posP.y + 50);
+        text(silaba, posP.x + 55, posP.y + 50);
         pop();
         break;
     }
@@ -326,7 +326,7 @@ class Bloco {
 
     for (var i = 1; i < this.nSilabas + 1; i++) {
       this.desenharErrado(this.silabas[i - 1], this.erradas[i - 1], i);
-      this.desenharCerto(this.certas[i - 1], i);
+      //this.desenharCerto(this.certas[i - 1], i);
     }
 
   }

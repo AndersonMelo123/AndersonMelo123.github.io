@@ -5,7 +5,7 @@ var palavras = [
   "Sapa__",
   "Ja__la",
   "Pare__",
-  "Ro__do",
+  "Mo__na",
   "__vista",
   "Bo__to",
   "_licate",
@@ -14,21 +14,21 @@ var palavras = [
   "__cada",
   "Xa__pe",
   "__dido",
-  "Pita__",
+  "Coca__",
   "Es__la",
   "Hos__tal",
-  "__cife",
+  "Gar__fa",
   "Zabum__"
 ];
 
 var opcoesPorPalavra = [
   ["sa", "na", "de", "me"],
   ["ca", "di", "da", "le"],
-  ["me", "ar", "si", "ru"],
+  ["me", "ár", "si", "ru"],
   ["se", "xo", "to", "ze"],
   ["ge", "ne", "vu", "bi"],
   ["ce", "fu", "ho", "de"],
-  ["de", "sa", "pi", "ro"],
+  ["de", "re", "pi", "ro"],
   ["tu", "da", "re", "vi"],
   ["to", "be", "zi", "ni"],
   ["a", "co", "xo", "vi"],
@@ -40,7 +40,7 @@ var opcoesPorPalavra = [
   ["ke", "vi", "bi", "da"],
   ["fu", "za", "co", "ru"],
   ["lo", "pi", "ge", "nu"],
-  ["re", "ji", "pa", "du"],
+  ["ra", "ji", "pa", "du"],
   ["xo", "zi", "ba", "fe"]
 ];
 
