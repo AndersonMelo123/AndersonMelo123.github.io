@@ -10,21 +10,21 @@ esversion :6
 
 var title;
 
-var listaPalavrasArray = ['Lá', 'Oi', 'Eu', 'Seu', 'Tu', 'Lápis', 'Bola', 'Rosa', 'Coca', 'Bolo',
-'Viola', 'Batata', 'Macaco', 'Janela', 'Salada', 'Sabonete', 'Macaxeira', 'Receita', 'Quebrado', 'Acordar'];
+var listaPalavrasArray = ['Lá', 'Oi', 'Eu', 'Seu', 'Tu', 'Lápis', 'Bola', 'Rosa', 'Carro', 'Bolo',
+'Viola', 'Batata', 'Macaco', 'Janela', 'Salada', 'Sabonete', 'Macaxeira', 'Computador', 'Documento', 'Alugado'];
 
 var palavrasQuebradas = [
   'Lá', 'Oi', 'Eu', 'Seu', 'Tu',
-  'Lá - pis', 'Bo - la', 'Ro - Sa', 'Co - ca', 'Bo - lo',
+  'Lá - pis', 'Bo - la', 'Ro - Sa', 'Car - ro', 'Bo - lo',
   'Vi - o - la', 'Ba - ta - ta', 'Ma - ca - co', 'Ja - ne - la', 'Sa - la - da',
-  'Sa - bo - ne - te', 'Ma - ca - xei - ra', 'Re - cei - ta', 'Que - bra - do', 'A - cor - dar'
+  'Sa - bo - ne - te', 'Ma - ca - xei - ra', 'Com - pu - ta - dor', 'Do - cu - men - to', 'A - lu - ga - do'
 ];
 
 var tipo = [
-  "Monossílabas", "Monossílabas", "Monossílabas", "Monossílabas", "Monossílabas",
-  "Dissílabas", "Dissílabas", "Dissílabas", "Dissílabas", "Dissílabas",
-  "Trissílabas", "Trissílabas", "Trissílabas", "Trissílabas", "Trissílabas",
-  "Polissílabas", "Polissílabas", "Polissílabas", "Polissílabas", "Polissílabas", 
+  "Exemplo:\nEla vem de lá!", "Exemplo:\nChegamos e dissemos: Oi!", "Exemplo:\nEu vim de São Paulo", "Exemplo:\nEle quer seu dinheiro", "Exemplo:\nTu não virás comigo!",
+  "Exemplo:\nVocê quer comprar um lápis?", "Exemplo:\nO rapaz gosta de jogar bola", "Exemplo:\nA mulher recebeu uma rosa", "Exemplo:\nMeu pai comprou um carro", "Exemplo:\nO bolo ficou muito gostoso",
+  "Exemplo:\nOs meninos tocam viola", "Exemplo:\nA batata chegou no mercado", "Exemplo:\nO macaco vive na floresta", "Exemplo:\nA janela está aberta", "Exemplo:\nA salada tem alface e tomate",
+  "Exemplo:\nO sabonte é de alfazema", "Exemplo:\nA macaxeira está saborosa", "Exemplo:\nO computador possui impressora", "Exemplo:\nO documento deve ser colorido", "Exemplo:\nO carro foi alugado", 
 ];
 
 
@@ -55,7 +55,6 @@ function preload() {
   bkgImg = loadImage('../RECURSOS/IMAGENS/mod2-exp1.png');
   btProxImg = loadImage('../RECURSOS/IMAGENS/seta.png');
   btVoltarImg = loadImage('../RECURSOS/IMAGENS/seta.png');
-  //btSomImg = loadImage('../RECURSOS/IMAGENS/02.png');
 }
 
 function setup() {
@@ -64,9 +63,8 @@ function setup() {
   frameRate(15);
   createCanvas(innerWidth, innerHeight);
 
-  btProxImgVetor = createVector((width / 15) * 10.6, (innerHeight / 5) * 3.3);
-  //btSomImgVetor = createVector((width / 15) * 10.6, (innerHeight / 9) * 2);
-  btVoltarImgVetor = createVector((width / 16) * 10.6, (innerHeight / 4.5) * 3.3);
+  btProxImgVetor = createVector((width / 15) * 10.6, (innerHeight / 16) * 3.3);
+  btVoltarImgVetor = createVector((width / 15.5) * 10.6, (innerHeight / 11.7) * 3.3);
 
   for (var i = 0; i < numBlocos; i++) {
     blocos[i] = new Bloco(listaPalavrasArray[i], palavrasQuebradas[i]);
@@ -87,7 +85,6 @@ function draw() {
   textAlign(CENTER);
   blocos[blocoAtual].mostrar();
   blocos2[blocoAtual2].mostrar();
-  //image(btSomImg, btSomImgVetor.x, btSomImgVetor.y, 50, 50);
 
 }
 
@@ -105,7 +102,6 @@ function mousePressed() {
       blocoAtual2 = numBlocos-1;
     }
     blocos[blocoAtual].tocar();
-    //blocos[blocoAtual2].tocar();
   }
 
   centroImgX = btProxImgVetor.x + btProxImg.width / 4 - 20;
@@ -120,14 +116,7 @@ function mousePressed() {
       blocoAtual2 = 0;
     }
     blocos[blocoAtual].tocar();
-    //blocos[blocoAtual2].tocar();
   }
-
-  //var inicioBtSomX = btSomImgVetor.x;
-  //var inicioBtSomY = btSomImgVetor.y;
-
-  //var fimBtSomX = btSomImgVetor.x + 50;
-  //var fimBtSomY = btSomImgVetor.y + 50;
 
   if (mouseX > inicioBtSomX &&
     mouseX < fimBtSomX &&
@@ -145,14 +134,14 @@ class Bloco {
   }
 
   mostrar() {
-    textSize(85);
+    textSize(70);
     fill(255);
     var alturaPalavras = 50;
     var scl = 80;
     textAlign(CENTER);
-    text(this.palavraQuebrada, 38 * (innerWidth / scl), alturaPalavras * (innerHeight / scl)); //palavra de baixo
+    text(this.palavraQuebrada, 38 * (innerWidth / scl), 38 * (innerHeight / scl)); //palavra de baixo
     textSize(100);
-    text(this.palavra, 38 * (innerWidth / scl), 34 * (innerHeight / scl)); //palavra de cima
+    text(this.palavra, 38 * (innerWidth / scl), 25 * (innerHeight / scl)); //palavra de cima
     fill(0);
   }
 
@@ -175,10 +164,10 @@ class Bloco2 {
     fill(255);
     var alturaPalavras = 50;
     var scl = 80;
-    
+    textAlign(LEFT);
     //var t1 = text(this.palavrasQuebrada, 35 * (innerWidth / scl), alturaPalavras * (innerHeight / scl));
-    textSize(30);
-    text(this.tipo, 22 * (innerWidth / scl), 20 * (innerHeight / scl));
+    textSize(50);
+    text(this.tipo, 16 * (innerWidth / scl), 50 * (innerHeight / scl));
     fill(0);
   }
 

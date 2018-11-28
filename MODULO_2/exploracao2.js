@@ -10,37 +10,26 @@ Uso de classes para criação de bloco de informação.
 */
 
 var listaPalavrasArray = [
-  "dar", "ir", "rir", "ser", "ter", "ver", "crer", "pôr", "ler", "voz",
-  "cantar", "falar", "bater", "fazer", "virar", "errar", "lutar", "unir", "comer", "saber",
-  "estudar", "receber", "aprender", "proteger", "começar", "colocar", "precisar", "conversar", "trabalhar", "repetir",
-  "acontecer", "participar", "apresentar", "aproveitar", "considerar", "despedir", "reconhecer", "desocupar", "comunicar", "desaparecer",
+  "Eu 	Tu", "Dar 	Ler", "Bom   Vil", "Pai   Pão",
+  "Eles   Este", "Cantar   Comer", "Feliz   Bela", "Vaso   Pincel",
+  "Escrever   Repetir", "Bonito  Escuro", "Cortina  Cigarro", "Primeiro  Último", 
+  "Quadragéssimo  Milésimo", "Reconhcer   Desconstruir", "Deslumbrante   Colorido", "Casamento   Apostila",
 ];
 
 var tipo = [
-  "Monossílabas", "Monossílabas", "Monossílabas", "Monossílabas", "Monossílabas", "Monossílabas", "Monossílabas", "Monossílabas", "Monossílabas", "Monossílabas",
-  "Dissílabas", "Dissílabas", "Dissílabas", "Dissílabas", "Dissílabas", "Dissílabas", "Dissílabas", "Dissílabas", "Dissílabas", "Dissílabas",
-  "Trissílabas", "Trissílabas", "Trissílabas", "Trissílabas", "Trissílabas", "Trissílabas", "Trissílabas", "Trissílabas", "Trissílabas", "Trissílabas",
-  "Polissílabas", "Polissílabas", "Polissílabas", "Polissílabas", "Polissílabas", "Polissílabas", "Polissílabas", "Polissílabas", "Polissílabas", "Polissílabas", 
+  "Monossílabas\n\nPronomes:", "Monossílabas\n\nVerbos:", "Monossílabas\n\nAdjetivos:", "Monossílabas\n\nSubstantivos:",
+  "Dissílabas\n\nPronomes:", "Dissílabas\n\nVerbos:", "Dissílabas\n\nAdjetivos:", "Dissílabas\n\nSubstantivos:",
+  "Trissílabas\n\nVerbos:", "Trissílabas\n\nAdjetivos:", "Trissílabas\n\nSubstantivos:", "Trissílabas\n\nNumerais:",
+  "Polissílabas\n\nNumerais:", "Polissílabas\n\nVerbos:", "Polissílabas\n\nAdjetivos:", "Polissílabas\n\nSubstantivos:",
 ];
 
 
 var palavrasQuebradas = [
-  "dar", "ir", "rir", "ser", "ter", "ver", "crer", "pôr", "ler", "voz",
-  "can - tar", "fa - lar", "ba - ter", "fa - zer", "vi - rar", "er - rar", "lu - tar", "u - nir", "co - mer", "sa - ber",
-  "es - tu - dar", "re - ce - ber", "a - pren - der", "pro - te - ger", "co - me - çar", "co - lo - car", "pre - ci - sar", "con - ver - sar", "tra - ba - lhar", "re - pe - tir",
-  "a - con - te - cer", "par - ti - ci - par", "a - pre - sen - tar", "a - pro - vei - tar", "con - si - de - rar", "des - pe - dir", "re - co - nhe - cer", "de - so - cu - par", "co - mu - ni - car", "de - sa - pa - re - cer",
+  "Nós	Vós", "Rir 	Por", "Mau   Cru", "Mãe   Pé",
+  "Minha   Cada", "Unir  Compor", "Frio   Puro", "Creme   Chave",
+  "Contratar   Trabalhar", "Madura  Magrelo", "Garrafa  Bombeiro", "Setenta  Dezena",
+  "Penúltimo   Centésimo", "Contraponho", "Brasileiro  Nordestino", "Guardanapo   Documento",
 ];
-
-
-
-//
-// ██╗      ██████╗  ██████╗ ██╗ ██████╗ █████╗
-// ██║     ██╔═══██╗██╔════╝ ██║██╔════╝██╔══██╗
-// ██║     ██║   ██║██║  ███╗██║██║     ███████║
-// ██║     ██║   ██║██║   ██║██║██║     ██╔══██║
-// ███████╗╚██████╔╝╚██████╔╝██║╚██████╗██║  ██║
-// ╚══════╝ ╚═════╝  ╚═════╝ ╚═╝ ╚═════╝╚═╝  ╚═╝
-//
 
 
 var bkgImg;
@@ -57,7 +46,7 @@ var btVoltarImgVetor;
 
 var btSomImgVetor;
 
-var numBlocos = 40;
+var numBlocos = 16;
 
 var blocoAtual = 0;
 var blocoAtual2 = 0;
@@ -78,9 +67,9 @@ function setup() {
   frameRate(15);
   createCanvas(innerWidth, innerHeight);
 
-  btProxImgVetor = createVector((width / 15) * 10.6, (innerHeight / 5) * 3.3);
+  btProxImgVetor = createVector((width / 15) * 10.6, (innerHeight / 15) * 3.3);
   //btSomImgVetor = createVector((width / 15) * 10.6, (innerHeight / 9) * 2);
-  btVoltarImgVetor = createVector((width / 16) * 10.6,(innerHeight / 4.5) * 3.3);
+  btVoltarImgVetor = createVector((width / 16) * 10.6,(innerHeight / 11) * 3.3);
 
 
 
@@ -139,12 +128,6 @@ function mousePressed() {
     blocos[blocoAtual].tocar();
     //blocos[blocoAtual2].tocar();
   }
-  
-  //var inicioBtSomX = btSomImgVetor.x;
-  //var inicioBtSomY = btSomImgVetor.y;
-
-  //var fimBtSomX = btSomImgVetor.x + 50;
-  //var fimBtSomY = btSomImgVetor.y + 50;
 
   if(mouseX > inicioBtSomX
     && mouseX < fimBtSomX
@@ -162,14 +145,14 @@ class Bloco {
   }
 
   mostrar() {
-    textSize(85);
+    textSize(72);
     fill(255);
-    var alturaPalavras = 50;
+    var alturaPalavras = 62;
     var scl = 80;
     textAlign(CENTER);
-    var t1 = text(this.palavrasQuebrada, 35 * (innerWidth / scl), alturaPalavras * (innerHeight / scl));
-    textSize(100);
-    text(this.palavra, 34 * (innerWidth / scl), 33 * (innerHeight / scl));
+    var t1 = text(this.palavrasQuebrada, 36 * (innerWidth / scl), alturaPalavras * (innerHeight / scl));
+    textSize(72);
+    text(this.palavra, 36 * (innerWidth / scl), 46 * (innerHeight / scl));
     fill(0);
   }
 
@@ -194,8 +177,8 @@ class Bloco2 {
     var scl = 80;
     
     //var t1 = text(this.palavrasQuebrada, 35 * (innerWidth / scl), alturaPalavras * (innerHeight / scl));
-    textSize(30);
-    text(this.tipo, 17 * (innerWidth / scl), 20 * (innerHeight / scl));
+    textSize(38);
+    text(this.tipo, 19 * (innerWidth / scl), 20 * (innerHeight / scl));
     fill(0);
   }
 
