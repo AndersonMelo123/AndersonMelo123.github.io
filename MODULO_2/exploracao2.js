@@ -13,7 +13,7 @@ var listaPalavrasArray = [
   "Eu 	Tu", "Dar 	Ler", "Bom   Vil", "Pai   Pão",
   "Eles   Este", "Cantar   Comer", "Feliz   Bela", "Vaso   Pincel",
   "Escrever   Repetir", "Bonito  Escuro", "Cortina  Cigarro", "Primeiro  Último", 
-  "Quadragéssimo  Milésimo", "Reconhcer   Desconstruir", "Deslumbrante   Colorido", "Casamento   Apostila",
+  "Quadragésimo  Milésimo", "Reconhecer   Desconstruir", "Deslumbrante   Colorido", "Casamento   Apostila",
 ];
 
 var tipo = [

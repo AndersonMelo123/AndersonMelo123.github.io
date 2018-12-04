@@ -177,7 +177,7 @@ class Bloco {
     this.opcoes = opcoes;
     this.pos = 12;
 
-    this.p1 = createVector(20*(innerWidth / 80), 22*(innerHeight / 80)); // distancia horizontal da imagem
+    this.p1 = createVector(18*(innerWidth / 80), 22*(innerHeight / 80)); // distancia horizontal da imagem
 
     this.tamanho = 120;
 
@@ -191,7 +191,7 @@ class Bloco {
     fill(255);
     text(this.silaba, this.posSilaba.x, this.posSilaba.y);
 
-    this.opcoes[0].resize(680, 410); // tamanho da imagem L x A
+    this.opcoes[0].resize(720, 450); // tamanho da imagem L x A
 
     var alturaPalavras = 32;
     var scl = 80;
