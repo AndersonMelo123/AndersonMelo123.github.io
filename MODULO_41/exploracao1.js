@@ -1,9 +1,11 @@
 
-var silabas = ["Cordel", "Cordel", "Cordel",
-               "Poesia", "Poesia", "Poesia",
-               "Poema", "Poema", "Poema",
-               "Soneto", "Soneto", "Soneto"];
+var silabas = ["Panfleto", "Panfleto", "Panfleto", "Conta de Luz", "Conta de Água", "Nota Fiscal", "Cupom", "Certidão de Nascimento",
+                "RG", "Carteira de Trabalho", "Título de Eleitor", "CPF", "Carteira de Habilitação"];
 
+var panfleto1, panfleto2, panfleto3,
+    contaAgua, contaLuz, notaFiscal, cupom,
+    certidaoNascimento, RG, carteiraTrabalho, titulo, CPF, CNH;
+    
 var opcoesPorSilaba;
 
 var posCerta = [1, 1, 1, 1, 1,
@@ -17,7 +19,7 @@ var blocoAtual = 0;
 
 var blocos = [];
 
-var numBlocos = 12;
+var numBlocos = 13;
 
 var bkgImg;
 var btProxImg;
@@ -29,22 +31,23 @@ var somErro;
 
 function preload() {
 
-  cordel1                = loadImage("../RECURSOS/IMAGENS/codel1.jpg");
-  cordel2                = loadImage("../RECURSOS/IMAGENS/cordel2.jpg");
-  cordel3                = loadImage("../RECURSOS/IMAGENS/cordel3.jpg");
-  poesia1                = loadImage("../RECURSOS/IMAGENS/poesia1.png");
-  poesia2                = loadImage("../RECURSOS/IMAGENS/poesia2.jpg");
-  poesia3                = loadImage("../RECURSOS/IMAGENS/poesia3.jpg");
-  poema1              = loadImage("../RECURSOS/IMAGENS/poema1.png");
-  poema2              = loadImage("../RECURSOS/IMAGENS/poema2.jpg");
-  poema3              = loadImage("../RECURSOS/IMAGENS/poema3.png");
-  soneto1             = loadImage("../RECURSOS/IMAGENS/soneto1.jpg");
-  soneto2             = loadImage("../RECURSOS/IMAGENS/soneto2.jpg");
-  soneto3             = loadImage("../RECURSOS/IMAGENS/soneto3.jpg");
+  panfleto1          = loadImage("../RECURSOS/IMAGENS/panfleto1.png");
+  panfleto2          = loadImage("../RECURSOS/IMAGENS/panfleto2.png");
+  panfleto3          = loadImage("../RECURSOS/IMAGENS/panfleto3.png");
+  contaAgua          = loadImage("../RECURSOS/IMAGENS/contaLuz.png");
+  contaLuz           = loadImage("../RECURSOS/IMAGENS/contAgua.png");
+  notaFiscal         = loadImage("../RECURSOS/IMAGENS/notaFiscal.png");
+  cupom              = loadImage("../RECURSOS/IMAGENS/cupom.png");
+  certidaoNascimento = loadImage("../RECURSOS/IMAGENS/certidaoNascimento.png");
+  RG                 = loadImage("../RECURSOS/IMAGENS/RG.png");
+  carteiraTrabalho   = loadImage("../RECURSOS/IMAGENS/carteiraTrabalho.png");
+  titulo             = loadImage("../RECURSOS/IMAGENS/titulo.png");
+  CPF                = loadImage("../RECURSOS/IMAGENS/CPF.png");
+  CNH                = loadImage("../RECURSOS/IMAGENS/CNH.png");
   
-  bkgImg                  = loadImage("../RECURSOS/IMAGENS/mod5-exp1.png");
-  btProxImg               = loadImage("../RECURSOS/IMAGENS/seta.png");
-  btVoltarImg             = loadImage("../RECURSOS/IMAGENS/seta.png");
+  bkgImg             = loadImage("../RECURSOS/IMAGENS/mod4-exp1.png");
+  btProxImg          = loadImage("../RECURSOS/IMAGENS/seta.png");
+  btVoltarImg        = loadImage("../RECURSOS/IMAGENS/seta.png");
 
 }
 
@@ -55,13 +58,12 @@ function setup() {
   textAlign(CENTER);
   createCanvas(innerWidth, innerHeight);
 
-  var opcoesPorSilaba = [[cordel1], [cordel2], [cordel3], 
-                         [poesia1], [poesia2], [poesia3],
-                         [poema1], [poema2], [poema3], 
-                         [soneto1], [soneto2], [soneto3]];
+  var opcoesPorSilaba = [[panfleto1], [panfleto2], [panfleto3], 
+                         [contaAgua], [contaLuz], [notaFiscal], [cupom],
+                         [certidaoNascimento], [RG], [carteiraTrabalho], [titulo], [CPF], [CNH]];
 
-  btProxImgVetor = createVector((width / 14.5) * 10.6, (innerHeight / 12.5) * 2.2);
-  btVoltarImgVetor = createVector((width / 15.5) * 11,(innerHeight / 9.5) * 2.4);
+  btProxImgVetor = createVector((width / 15) * 10.6, (innerHeight / 13) * 10.8);
+  btVoltarImgVetor = createVector((width / 16) * 11,(innerHeight / 9.9) * 9);
 
   for(var i = 0; i < numBlocos; i++) {
     blocos[i] = new Bloco(silabas[i], opcoesPorSilaba[i]);
@@ -170,23 +172,23 @@ class Bloco {
 
     this.silaba = silaba;
     this.opcoes = opcoes;
-    this.pos = 12;
+    this.pos = 13;
 
-    this.p1 = createVector(22*(innerWidth / 80), 21*(innerHeight / 80)); // distancia horizontal da imagem
+    this.p1 = createVector(27*(innerWidth / 80), 22*(innerHeight / 80)); // distancia horizontal da imagem
 
     this.tamanho = 120;
 
-    this.posSilaba = createVector(40*(innerWidth / 80), 18*(innerHeight / 80)); // distancia horizontal da palavra de cima
+    this.posSilaba = createVector(39*(innerWidth / 80), 20*(innerHeight / 80)); // distancia horizontal da palavra de cima
 
   }
 
   mostrar() {
 
-    textSize(50); //tamanho do titulo
+    textSize(46); //tamanho do titulo
     fill(255);
     text(this.silaba, this.posSilaba.x, this.posSilaba.y);
 
-    this.opcoes[0].resize(620, 410); // tamanho da imagem L x A
+    this.opcoes[0].resize(400, 430); // tamanho da imagem
 
     var alturaPalavras = 32;
     var scl = 80;

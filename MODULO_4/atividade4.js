@@ -1,56 +1,46 @@
-var palavras = ["","","","","","","","","",""];
 
-var opcoesPorPalavra = [
-  ["substantivo", "pronome", "verbo", "artigo"],
-  ["pronome", "artigo", "verbo", "numeral"],
-  ["verbo", "substantivo", "artigo", "pronome"],
-  ["artigo", "verbo", "numeral", "pronome"],
-  ["pronome", "verbo", "numeral", "artigo"],
-  ["verbo", "numeral", "substantivo", "artigo"],
-  ["pronome", "substantivo", "artigo", "verbo"],
-  ["numeral", "artigo", "pronome", "verbo"],
-  ["numeral", "substantivo", "verbo", "pronome"],
-  ["verbo", "numeral", "artigo", "substantivo"]
-];
+var silabas = ["Crie frases com 2 ou mais figuras acima.", "Crie frases com 2 ou mais figuras acima.", "Crie frases com 2 ou mais figuras acima.",
+               "Crie frases com 2 ou mais figuras acima.", "Crie frases com 2 ou mais figuras acima.", "Crie frases com 2 ou mais figuras acima.",
+               ];
 
-var a1, a2, a3, a4, a5, a6, a7, a8, a9, a10;
+var bilhete1, bilhete2, bilhete3,
+    classificados1, classificados2, classificados3;
+    
+var opcoesPorSilaba;
 
-var posCerta = [3, 1, 2, 3, 4, 1, 2, 3, 1, 4];
+var posCerta = [1, 1, 1, 1, 1,
+                1, 1, 1, 1, 1,
+                1, 1, 1, 1, 1,
+                1, 1, 1, 1, 1,
+                1, 1, 1, 1, 1];
 
 var sons = [];
 var blocoAtual = 0;
+
 var blocos = [];
-var numBlocos = 10;
+
+var numBlocos = 6;
 
 var bkgImg;
 var btProxImg;
 var btProxImgVetor;
 var btSomImg;
 
-var tamanhoCirculo = 160;
-
 var somErro;
-var somSucesso;
-
 
 
 function preload() {
 
-  a1 = loadImage("../RECURSOS/IMAGENS/foto1.png");
-  a2 = loadImage("../RECURSOS/IMAGENS/foto2.png");
-  a3 = loadImage("../RECURSOS/IMAGENS/foto3.png");
-  a4 = loadImage("../RECURSOS/IMAGENS/foto4.png");
-  a5 = loadImage("../RECURSOS/IMAGENS/foto5.png");
-  a6 = loadImage("../RECURSOS/IMAGENS/foto6.png");
-  a7 = loadImage("../RECURSOS/IMAGENS/foto7.png");
-  a8 = loadImage("../RECURSOS/IMAGENS/foto8.png");
-  a9 = loadImage("../RECURSOS/IMAGENS/foto9.png");
-  a10 = loadImage("../RECURSOS/IMAGENS/foto10.png");
-
-  bkgImg = loadImage("../RECURSOS/IMAGENS/mod4-rec4.png");
-  btProxImg = loadImage("../RECURSOS/IMAGENS/seta.png");
-  btVoltarImg = loadImage("../RECURSOS/IMAGENS/seta.png");
-  btSomImg = loadImage("../RECURSOS/IMAGENS/02.png");
+  bilhete1                = loadImage("../RECURSOS/IMAGENS/bilhete11.png");
+  bilhete2                = loadImage("../RECURSOS/IMAGENS/bilhete2.png");
+  bilhete3                = loadImage("../RECURSOS/IMAGENS/bilhete3.png");
+  classificados1          = loadImage("../RECURSOS/IMAGENS/classificados1.png");
+  classificados2          = loadImage("../RECURSOS/IMAGENS/classificados2.png");
+  classificados3          = loadImage("../RECURSOS/IMAGENS/classificados3.png");
+  
+  bkgImg                  = loadImage("../RECURSOS/IMAGENS/mod4-exp3.png");
+  btProxImg               = loadImage("../RECURSOS/IMAGENS/seta.png");
+  btVoltarImg             = loadImage("../RECURSOS/IMAGENS/seta.png");
 
 }
 
@@ -61,23 +51,15 @@ function setup() {
   textAlign(CENTER);
   createCanvas(innerWidth, innerHeight);
 
-  var vetor = [[a1], [a2], [a3], [a4], [a5], [a6], [a7], [a8], [a9], [a10]];
+  var opcoesPorSilaba = [[bilhete1], [bilhete2], [bilhete3], 
+                         [classificados1], [classificados2], [classificados3]];
 
-  btProxImgVetor = createVector((width / 15) * 10.6, (innerHeight / 13) * 3.3);
-  btSomImgVetor = createVector((width / 44) * 10.6, (innerHeight / 8) * 2);
-  btVoltarImgVetor = createVector((width / 16) * 11, (innerHeight / 9.9) * 3.3);
+  btProxImgVetor = createVector((width / 14.5) * 10.6, (innerHeight / 12.5) * 10.8);
+  btVoltarImgVetor = createVector((width / 15.5) * 11,(innerHeight / 9.5) * 9);
 
-  for (var i = 0; i < numBlocos; i++) {
-    blocos[i] = new Bloco(vetor[i], palavras[i], posCerta[i], opcoesPorPalavra[i]);
+  for(var i = 0; i < numBlocos; i++) {
+    blocos[i] = new Bloco(silabas[i], opcoesPorSilaba[i]);
   }
-
-  somErro = loadSound("../RECURSOS/AUDIOS/erro.mp3");
-  somSucesso = loadSound("../RECURSOS/AUDIOS/sucesso.mp3");
-
-  somErro.setVolume(0.7);
-  somSucesso.setVolume(0.7);
-
-  // blocos[0].tocar();
 
 }
 
@@ -89,93 +71,85 @@ function draw() {
   rotate(180);
   image(btVoltarImg, -btVoltarImgVetor.x, -btVoltarImgVetor.y, 50, 50);
   pop();
-  image(btSomImg, btSomImgVetor.x, btSomImgVetor.y, 50, 50);
   textAlign(CENTER);
   blocos[blocoAtual].mostrar();
-
 }
 
 function avancarBloco() {
   blocoAtual++;
-  if (blocoAtual > numBlocos - 1) {
+  if(blocoAtual > numBlocos-1) {
     blocoAtual = 0;
   }
 }
 
 function voltarBloco() {
   blocoAtual--;
-  if (blocoAtual < 0) {
-    blocoAtual = numBlocos - 1;
+  if(blocoAtual < 0) {
+    blocoAtual = numBlocos-1;
   }
 }
 
 function mousePressed() {
 
-  var centroImgX = btVoltarImgVetor.x + btVoltarImg.width / 4 - 80;
-  var centroImgY = btVoltarImgVetor.y + btVoltarImg.height / 6 - 75;
+  var centroImgX =  btVoltarImgVetor.x + btVoltarImg.width/4 -80;
+  var centroImgY =  btVoltarImgVetor.y + btVoltarImg.height/6 -75;
   var distancia = dist(mouseX, mouseY, centroImgX, centroImgY);
 
-  if (distancia < 50) {
+  if(distancia < 50) {
     voltarBloco();
     blocos[blocoAtual].tocar();
   }
 
-  centroImgX = btProxImgVetor.x + btProxImg.width / 4 - 20;
-  centroImgY = btProxImgVetor.y + btProxImg.height / 6 - 24;
+  centroImgX =  btProxImgVetor.x + btProxImg.width/4 -20;
+  centroImgY =  btProxImgVetor.y + btProxImg.height/6 -24;
   distancia = dist(mouseX, mouseY, centroImgX, centroImgY);
 
-  if (distancia < 50) {
+  if(distancia < 50) {
     avancarBloco();
   }
 
-  var inicioBtSomX = btSomImgVetor.x;
-  var inicioBtSomY = btSomImgVetor.y;
-
-  var fimBtSomX = btSomImgVetor.x + 50;
-  var fimBtSomY = btSomImgVetor.y + 50;
-
-  if (mouseX > inicioBtSomX &&
-    mouseX < fimBtSomX &&
-    mouseY > inicioBtSomY &&
-    mouseY < fimBtSomY) {
+  if(mouseX > inicioBtSomX
+    && mouseX < fimBtSomX
+    && mouseY > inicioBtSomY
+    && mouseY < fimBtSomY) {
     console.log("som");
   }
 
-  var d1 = dist(mouseX, mouseY, 25 * (innerWidth / 80), 55 * (innerHeight / 80));
-  var d2 = dist(mouseX, mouseY, 35 * (innerWidth / 80), 55 * (innerHeight / 80));
-  var d3 = dist(mouseX, mouseY, 45 * (innerWidth / 80), 55 * (innerHeight / 80));
-  var d4 = dist(mouseX, mouseY, 55 * (innerWidth / 80), 55 * (innerHeight / 80));
+  var d1 = dist(mouseX, mouseY, 15*(innerWidth / 80) + (60), 40*(innerHeight / 80) + (60));
+  var d2 = dist(mouseX, mouseY, 30*(innerWidth / 80) + (60), 40*(innerHeight / 80) + (60));
+  var d3 = dist(mouseX, mouseY, 45*(innerWidth / 80) + (60), 40*(innerHeight / 80) + (60));
+  var d4 = dist(mouseX, mouseY, 60*(innerWidth / 80) + (60), 40*(innerHeight / 80) + (60));
 
-  if (d1 < tamanhoCirculo) {
+  if(d1 < 120) {
 
-    if (blocos[blocoAtual].escolher(1)) {
+    if(blocos[blocoAtual].escolher(1)) {
       blocos[blocoAtual].tocarCerto();
       avancarBloco();
     } else {
       blocos[blocoAtual].tocarErrado();
     }
 
-  } else if (d2 < tamanhoCirculo) {
+  } else if(d2 < 120) {
 
-    if (blocos[blocoAtual].escolher(2)) {
+    if(blocos[blocoAtual].escolher(2)) {
       blocos[blocoAtual].tocarCerto();
       avancarBloco();
     } else {
       blocos[blocoAtual].tocarErrado();
     }
 
-  } else if (d3 < tamanhoCirculo) {
+  } else if(d3 < 120) {
 
-    if (blocos[blocoAtual].escolher(3)) {
+    if(blocos[blocoAtual].escolher(3)) {
       blocos[blocoAtual].tocarCerto();
       avancarBloco();
     } else {
       blocos[blocoAtual].tocarErrado();
     }
 
-  } else if (d4 < tamanhoCirculo) {
+  } else if(d4 < 120) {
 
-    if (blocos[blocoAtual].escolher(4)) {
+    if(blocos[blocoAtual].escolher(4)) {
       blocos[blocoAtual].tocarCerto();
       avancarBloco();
     } else {
@@ -186,55 +160,32 @@ function mousePressed() {
 
 class Bloco {
 
-  constructor(imagem, palavraCompleta, posCertaArray, opcoes) {
+  constructor(silaba, opcoes) {
 
-    this.imagem = imagem;
-    this.palavraCompleta = palavraCompleta;
-    this.posCertaArray = posCertaArray;
+    this.silaba = silaba;
     this.opcoes = opcoes;
-    this.pos = 25;
+    this.pos = 12;
 
-    this.posImagem = createVector(25*(innerWidth / 80), 22*(innerHeight / 80)); //imagem
+    this.p1 = createVector(18*(innerWidth / 80), 11*(innerHeight / 80)); // distancia horizontal da imagem
+
+    this.tamanho = 120;
+
+    this.posSilaba = createVector(39*(innerWidth / 80), 65*(innerHeight / 80)); // distancia horizontal da palavra de cima
 
   }
 
   mostrar() {
 
-    textSize(70);
-    text(this.palavraCompleta, 40 * (innerWidth / 80), 35 * (innerHeight / 80));
+    textSize(40); //tamanho do titulo
+    fill(255);
+    text(this.silaba, this.posSilaba.x, this.posSilaba.y);
 
-    this.imagem[0].resize(600, 220);
+    this.opcoes[0].resize(720, 450); // tamanho da imagem L x A
 
-    textSize(28);
-    for (var i = 0; i < 40; i += 10) {
-      fill(0);
-      ellipse((this.pos + i) * (innerWidth / 80), 63 * (innerHeight / 80), tamanhoCirculo);
-      fill(255);
-      text(this.opcoes[i / 10], (this.pos + i) * (innerWidth / 80), 65 * (innerHeight / 80));
-    }
+    var alturaPalavras = 32;
+    var scl = 80;
+    image(this.opcoes[0], this.p1.x, this.p1.y);
+    fill(255);
 
-    image(this.imagem[0], this.posImagem.x, this.posImagem.y);
-
-
-  }
-
-  escolher(posicao) {
-    console.log(posicao);
-    console.log(this.posCertaArray);
-    if (posicao - 1 == this.posCertaArray - 1) {
-      return true;
-    } else {
-      return false;
-    }
-  }
-
-  tocarCerto() {
-    console.log("certo");
-    somSucesso.play();
-  }
-
-  tocarErrado() {
-    console.log("errado");
-    somErro.play();
   }
 }

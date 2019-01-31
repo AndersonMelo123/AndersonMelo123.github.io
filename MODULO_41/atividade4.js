@@ -1,45 +1,33 @@
-var palavras = ["Qual a finalidade da\ncertidão de nascimento?",
-                "Com esse documento:","O que significa NACIONALIDADE?",
-                "O que significa NATURALIDADE?",
-                "Qual a cidade e o estado\nque aparecem na certidão de nascimento?",
-                "Quais as informações constam\nna certidão de nascimento?",
-                "",
-                "",
-                "",
-                "",
-                "",
-                ""];
+var palavras = ["","","","","","","","","",""];
 
 var opcoesPorPalavra = [
-  ["A\nPrimeiro emprego", "B\nDirigir um veículo", "C\nPrimeiro documento\nde identificação\nde uma pessoa"],
-  ["A\nPassamos a ser\ncidadãos", "B\nSomos autorizados\na dirigir veículos", "C\nPodemos votar"],
-  ["A\nEstado em que\nnascemos", "B\nCidade em que\nnascemos", "C\nPaís em que\nnascemos"],
-  ["A\nMaternidade\nou hospital\nonde nascemos", "B\nEndereço completo\nonde nascemos", "C\nCidade em que\nnascemos"],
-  ["A\nGaranhuns - PE", "B\nSão Paulo - SP", "C\nRecife - PE"],
-  ["A\nNome dos tios,\ncor dos olhos", "B\nPaís, família, estado\ncidade onde nasceu\ne data de nascimento", "C\nEndereço dos pais,\ncor da pele"],
-  ["A", "B", "C"],
-  ["A", "B", "C"],
-  ["A", "B", "C"],
-  ["A", "B", "C"],
-  ["A", "B", "C"],
-  ["A", "B", "C"]
+  ["substantivo", "pronome", "verbo", "artigo"],
+  ["pronome", "artigo", "verbo", "numeral"],
+  ["verbo", "substantivo", "artigo", "pronome"],
+  ["artigo", "verbo", "numeral", "pronome"],
+  ["pronome", "verbo", "numeral", "artigo"],
+  ["verbo", "numeral", "substantivo", "artigo"],
+  ["pronome", "substantivo", "artigo", "verbo"],
+  ["numeral", "artigo", "pronome", "verbo"],
+  ["numeral", "substantivo", "verbo", "pronome"],
+  ["verbo", "numeral", "artigo", "substantivo"]
 ];
 
-var a1, a2, a3, a4, a5, a6, a7, a8, a9, a10, a11, a12;
+var a1, a2, a3, a4, a5, a6, a7, a8, a9, a10;
 
-var posCerta = [3, 1, 3, 3, 2, 2, 2, 3, 1, 3, 1, 1];
+var posCerta = [3, 1, 2, 3, 4, 1, 2, 3, 1, 4];
 
 var sons = [];
 var blocoAtual = 0;
 var blocos = [];
-var numBlocos = 12;
+var numBlocos = 10;
 
 var bkgImg;
 var btProxImg;
 var btProxImgVetor;
 var btSomImg;
 
-var tamanhoCirculo = 50;
+var tamanhoCirculo = 160;
 
 var somErro;
 var somSucesso;
@@ -48,20 +36,18 @@ var somSucesso;
 
 function preload() {
 
-  a1 = loadImage("../RECURSOS/IMAGENS/certidaoNascimento.jpeg");
-  a2 = loadImage("../RECURSOS/IMAGENS/certidaoNascimento.jpeg");
-  a3 = loadImage("../RECURSOS/IMAGENS/certidaoNascimento.jpeg");
-  a4 = loadImage("../RECURSOS/IMAGENS/certidaoNascimento.jpeg");
-  a5 = loadImage("../RECURSOS/IMAGENS/certidaoNascimento.jpeg");
-  a6 = loadImage("../RECURSOS/IMAGENS/certidaoNascimento.jpeg");
-  a7 = loadImage("../RECURSOS/IMAGENS/cordel3.jpg");
-  a8 = loadImage("../RECURSOS/IMAGENS/cordel3.jpg");
-  a9 = loadImage("../RECURSOS/IMAGENS/cordel3.jpg");
-  a10 = loadImage("../RECURSOS/IMAGENS/cordel3.jpg");
-  a11 = loadImage("../RECURSOS/IMAGENS/cordel3.jpg");
-  a12 = loadImage("../RECURSOS/IMAGENS/cordel3.jpg");
+  a1 = loadImage("../RECURSOS/IMAGENS/foto1.png");
+  a2 = loadImage("../RECURSOS/IMAGENS/foto2.png");
+  a3 = loadImage("../RECURSOS/IMAGENS/foto3.png");
+  a4 = loadImage("../RECURSOS/IMAGENS/foto4.png");
+  a5 = loadImage("../RECURSOS/IMAGENS/foto5.png");
+  a6 = loadImage("../RECURSOS/IMAGENS/foto6.png");
+  a7 = loadImage("../RECURSOS/IMAGENS/foto7.png");
+  a8 = loadImage("../RECURSOS/IMAGENS/foto8.png");
+  a9 = loadImage("../RECURSOS/IMAGENS/foto9.png");
+  a10 = loadImage("../RECURSOS/IMAGENS/foto10.png");
 
-  bkgImg = loadImage("../RECURSOS/IMAGENS/mod5-atv1.png");
+  bkgImg = loadImage("../RECURSOS/IMAGENS/mod4-rec4.png");
   btProxImg = loadImage("../RECURSOS/IMAGENS/seta.png");
   btVoltarImg = loadImage("../RECURSOS/IMAGENS/seta.png");
   btSomImg = loadImage("../RECURSOS/IMAGENS/02.png");
@@ -75,11 +61,11 @@ function setup() {
   textAlign(CENTER);
   createCanvas(innerWidth, innerHeight);
 
-  var vetor = [[a1], [a2], [a3], [a4], [a5], [a6], [a7], [a8], [a9], [a10], [a11], [a12]];
+  var vetor = [[a1], [a2], [a3], [a4], [a5], [a6], [a7], [a8], [a9], [a10]];
 
-  btProxImgVetor = createVector((width / 15) * 13.5, (innerHeight / 13) * 5);     //setas
-  btSomImgVetor = createVector((width / 44) * 40, (innerHeight / 8) * 2);
-  btVoltarImgVetor = createVector((width / 16) * 7.4, (innerHeight / 9.9) * 4.4);
+  btProxImgVetor = createVector((width / 15) * 10.6, (innerHeight / 13) * 3.3);
+  btSomImgVetor = createVector((width / 44) * 10.6, (innerHeight / 8) * 2);
+  btVoltarImgVetor = createVector((width / 16) * 11, (innerHeight / 9.9) * 3.3);
 
   for (var i = 0; i < numBlocos; i++) {
     blocos[i] = new Bloco(vetor[i], palavras[i], posCerta[i], opcoesPorPalavra[i]);
@@ -88,8 +74,8 @@ function setup() {
   somErro = loadSound("../RECURSOS/AUDIOS/erro.mp3");
   somSucesso = loadSound("../RECURSOS/AUDIOS/sucesso.mp3");
 
-  somErro.setVolume(0.8);
-  somSucesso.setVolume(0.8);
+  somErro.setVolume(0.7);
+  somSucesso.setVolume(0.7);
 
   // blocos[0].tocar();
 
@@ -155,10 +141,10 @@ function mousePressed() {
     console.log("som");
   }
 
-  var d1 = dist(mouseX, mouseY, 38 * (innerWidth / 80), 55 * (innerHeight / 80)); //posição clicavel
-  var d2 = dist(mouseX, mouseY, 55 * (innerWidth / 80), 55 * (innerHeight / 80));
-  var d3 = dist(mouseX, mouseY, 70 * (innerWidth / 80), 55 * (innerHeight / 80));
-  //var d4 = dist(mouseX, mouseY, 67 * (innerWidth / 80), 55 * (innerHeight / 80));
+  var d1 = dist(mouseX, mouseY, 25 * (innerWidth / 80), 55 * (innerHeight / 80));
+  var d2 = dist(mouseX, mouseY, 35 * (innerWidth / 80), 55 * (innerHeight / 80));
+  var d3 = dist(mouseX, mouseY, 45 * (innerWidth / 80), 55 * (innerHeight / 80));
+  var d4 = dist(mouseX, mouseY, 55 * (innerWidth / 80), 55 * (innerHeight / 80));
 
   if (d1 < tamanhoCirculo) {
 
@@ -187,9 +173,7 @@ function mousePressed() {
       blocos[blocoAtual].tocarErrado();
     }
 
-  } 
-
-  /*else if (d4 < tamanhoCirculo) {
+  } else if (d4 < tamanhoCirculo) {
 
     if (blocos[blocoAtual].escolher(4)) {
       blocos[blocoAtual].tocarCerto();
@@ -197,7 +181,7 @@ function mousePressed() {
     } else {
       blocos[blocoAtual].tocarErrado();
     }
-  }*/
+  }
 }
 
 class Bloco {
@@ -210,25 +194,23 @@ class Bloco {
     this.opcoes = opcoes;
     this.pos = 25;
 
-    this.posImagem = createVector(0.5*(innerWidth / 80), 8*(innerHeight / 80)); //imagem
+    this.posImagem = createVector(25*(innerWidth / 80), 22*(innerHeight / 80)); //imagem
 
   }
 
   mostrar() {
 
-    textSize(36);
-    text(this.palavraCompleta, 55 * (innerWidth / 80), 40 * (innerHeight / 80)); //pergunta
+    textSize(70);
+    text(this.palavraCompleta, 40 * (innerWidth / 80), 35 * (innerHeight / 80));
 
-    this.imagem[0].resize(520, 520); // tamanho da imagem
+    this.imagem[0].resize(600, 220);
 
     textSize(28);
-    var a = 0;
-    for (var i = 0; i < 30; i += 10) {
+    for (var i = 0; i < 40; i += 10) {
       fill(0);
-      ellipse((this.pos + (i+a)) * (innerWidth / 52), 54 * (innerHeight / 80), tamanhoCirculo); // esferas
+      ellipse((this.pos + i) * (innerWidth / 80), 63 * (innerHeight / 80), tamanhoCirculo);
       fill(255);
-      text(this.opcoes[i / 10], (this.pos + (i+a)) * (innerWidth / 52), 55.5 * (innerHeight / 80)); // respostas
-      a = a;
+      text(this.opcoes[i / 10], (this.pos + i) * (innerWidth / 80), 65 * (innerHeight / 80));
     }
 
     image(this.imagem[0], this.posImagem.x, this.posImagem.y);

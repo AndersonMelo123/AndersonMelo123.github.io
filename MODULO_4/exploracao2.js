@@ -1,14 +1,8 @@
 
-var silabas = ["Manchete de Jornal", "Manchete de Jornal", "Manchete de Jornal",
-               "Manchete de Revista", "Manchete de Revista", "Manchete de Revista",
-               "Receita Culinária", "Receita Culinária",
-               "Manual de Instruções", "Manual de Instruções"];
+var silabas = ["Bula", "Bula", "Bula",
+               "Receita", "Receita", "Receita",
+               "Rótulo", "Rótulo", "Rótulo"];
 
-var manchete1, manchete2, manchete3,
-    manchete4, manchete5, manchete6,
-    receita1, receita2,
-    manual1, manual2;
-    
 var opcoesPorSilaba;
 
 var posCerta = [1, 1, 1, 1, 1,
@@ -22,7 +16,7 @@ var blocoAtual = 0;
 
 var blocos = [];
 
-var numBlocos = 10;
+var numBlocos = 9;
 
 var bkgImg;
 var btProxImg;
@@ -34,20 +28,19 @@ var somErro;
 
 function preload() {
 
-  manchete1          = loadImage("../RECURSOS/IMAGENS/manchete1.png");
-  manchete2          = loadImage("../RECURSOS/IMAGENS/manchete2.png");
-  manchete3          = loadImage("../RECURSOS/IMAGENS/manchete3.png");
-  manchete4          = loadImage("../RECURSOS/IMAGENS/manchete4.png");
-  manchete5          = loadImage("../RECURSOS/IMAGENS/manchete5.png");
-  manchete6          = loadImage("../RECURSOS/IMAGENS/manchete6.png");
-  receita1           = loadImage("../RECURSOS/IMAGENS/receita.png");
-  receita2           = loadImage("../RECURSOS/IMAGENS/receita2.png");
-  manual1            = loadImage("../RECURSOS/IMAGENS/manual.png");
-  manual2            = loadImage("../RECURSOS/IMAGENS/manual2.png");
+  bula1                = loadImage("../RECURSOS/IMAGENS/bula.jpg");
+  bula2                = loadImage("../RECURSOS/IMAGENS/bula1.jpg");
+  bula3                = loadImage("../RECURSOS/IMAGENS/bula3.jpg");
+  receita1                = loadImage("../RECURSOS/IMAGENS/receita.jpg");
+  receita2                = loadImage("../RECURSOS/IMAGENS/receita4.jpg");
+  receita3                = loadImage("../RECURSOS/IMAGENS/receita5.jpg");
+  rotulo1              = loadImage("../RECURSOS/IMAGENS/rotulo1.jpg");
+  rotulo2              = loadImage("../RECURSOS/IMAGENS/rotulo2.jpg");
+  rotulo3              = loadImage("../RECURSOS/IMAGENS/rotulo3.jpg");
   
-  bkgImg             = loadImage("../RECURSOS/IMAGENS/mod4-exp2.png");
-  btProxImg          = loadImage("../RECURSOS/IMAGENS/seta.png");
-  btVoltarImg        = loadImage("../RECURSOS/IMAGENS/seta.png");
+  bkgImg                  = loadImage("../RECURSOS/IMAGENS/mod5-exp1.png");
+  btProxImg               = loadImage("../RECURSOS/IMAGENS/seta.png");
+  btVoltarImg             = loadImage("../RECURSOS/IMAGENS/seta.png");
 
 }
 
@@ -58,13 +51,12 @@ function setup() {
   textAlign(CENTER);
   createCanvas(innerWidth, innerHeight);
 
-  var opcoesPorSilaba = [[manchete1], [manchete2], [manchete3], 
-                         [manchete4], [manchete5], [manchete6],
-                         [receita1], [receita2], 
-                         [manual1], [manual2]];
+  var opcoesPorSilaba = [[bula1], [bula2], [bula3], 
+                         [receita1], [receita2], [receita3],
+                         [rotulo1], [rotulo2], [rotulo3]];
 
-  btProxImgVetor = createVector((width / 14.5) * 10.6, (innerHeight / 13) * 10.8);
-  btVoltarImgVetor = createVector((width / 15.5) * 11,(innerHeight / 9.9) * 9);
+  btProxImgVetor = createVector((width / 14.5) * 10.6, (innerHeight / 12.5) * 2.2);
+  btVoltarImgVetor = createVector((width / 15.5) * 11,(innerHeight / 9.5) * 2.4);
 
   for(var i = 0; i < numBlocos; i++) {
     blocos[i] = new Bloco(silabas[i], opcoesPorSilaba[i]);
@@ -173,13 +165,13 @@ class Bloco {
 
     this.silaba = silaba;
     this.opcoes = opcoes;
-    this.pos = 10;
+    this.pos = 12;
 
-    this.p1 = createVector(28*(innerWidth / 80), 23*(innerHeight / 80)); // distancia horizontal da imagem
+    this.p1 = createVector(22*(innerWidth / 80), 21*(innerHeight / 80)); // distancia horizontal da imagem
 
     this.tamanho = 120;
 
-    this.posSilaba = createVector(39*(innerWidth / 80), 21*(innerHeight / 80)); // distancia horizontal da palavra de cima 1 - hor / 2 - vert
+    this.posSilaba = createVector(40*(innerWidth / 80), 18*(innerHeight / 80)); // distancia horizontal da palavra de cima
 
   }
 
@@ -189,7 +181,7 @@ class Bloco {
     fill(255);
     text(this.silaba, this.posSilaba.x, this.posSilaba.y);
 
-    this.opcoes[0].resize(425, 415); // tamanho da imagem L x A
+    this.opcoes[0].resize(590, 420); // tamanho da imagem L x A
 
     var alturaPalavras = 32;
     var scl = 80;

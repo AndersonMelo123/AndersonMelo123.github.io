@@ -1,47 +1,66 @@
-var palavras = ["FOGÃO", "LEQUE", "ESCADA", "ISQUEIRO", "BALDE", "XICARA", "ALICATE", "ARANHA", "ÔNIBUS", "DINHEIRO"];
+var palavras = ["Qual o título da canção?",
+                "Quem é o autor da música?",
+                "Qual o mês da primavera?",
+                "A letra remete a um ambiente de:",
+                "Qual a mensagem da letra da música?",
+                "Encontre sinônimos para a palavra 'brotar'",
+                "A quem a letra da música faz referência?",
+                "Quais nomes indígenas aparecem na música?",
+                "Qual outro nome era dado ao Brasil?",
+                "Quem foram os homens que chegaram às\nterras brasileiras no início da colonização?",
+                "Os índios são exemplos de?"
+                ];
 
-var silabas = [["A", "To", "Lha"], ["To", "Pra", "ppp"], ["Co", "Tron", "ppp"], ["Co", "Te", "La", "Cho"], ["Ci", "Cle", "Bi", "Ta"],
-  ["Tra", "Sei", "Ves", "Ro"], ["Chor", "Ro", "Ca"], ["Vas", "Sou", "Ra"], ["Nho", "Mi", "Ca"], ["Cha", "La", "Bo"]];
+var opcoesPorPalavra = [
+  ["A\nSol de inverno", "B\nSol de primavera", "C\nSol de verão"],
+  ["A\nBeto Guedes", "B\nRobson Santos", "C\nAndré Morais"],
+  ["A\nMarço", "B\nJunho", "C\nSetembro"],
+  ["A\nPrédios", "B\nNatureza", "C\nAmbientes fechados"],
+  ["A\nGuerra", "B\nEsperança", "C\nSolidão"],
+  ["A\nSurgir", "B\nPlantar", "C\nCavar"],
+  ["A\nÍndios da Bolívia", "B\nÍndios do Faroeste", "C\nÍndios do Brasil"],
+  ["A\nTupinambá\nCaetés", "B\nTupi\nGuaraná", "C\nCurumin\nCunhatã"],
+  ["A\nTerra Brasilis", "B\nTerra Marinas", "C\nTerra do Sol"],
+  ["A\nJaponeses e\nSoviéticos", "B\nPortugueses e\nEspanhois", "C\nChineses e\nAmericanos"],
+  ["A\nPoluir os rios\ne os mares", "B\nMaltratar\nos animais", "C\nEquilibrio\nEcológico"]
+];
 
-var formasErradas = [[3, 3, 3], [3, 3, 3], [3, 3, 3], [3, 3, 3, 3], [1, 2, 3, 3], [3, 3, 3, 3], [3, 3, 3], [3, 3, 3], [3, 3, 3], [3, 3, 3]];
+var a1, a2, a3, a4, a5, a6, a7, a8, a9, a10, a11, a12, a13, a14, a15;
 
-var formasCertas = [[3, 1, 2], [1, 3], [2, 1], [2, 1, 3, 4], [3, 1, 2, 4], [3, 1, 2, 4], [4, 2, 1], [3, 1, 2], [2, 3, 1], [4, 3, 2]];
-
-var a1, a2, a3, a4, a5, a6, a7, a8, a9, a10;
+var posCerta = [2, 1, 3, 2, 2, 1, 3, 3, 1, 2, 3];
 
 var sons = [];
 var blocoAtual = 0;
 var blocos = [];
-var numBlocos = 10;
-var vetor;
+var numBlocos = 11;
 
 var bkgImg;
 var btProxImg;
 var btProxImgVetor;
 var btSomImg;
 
-var posInput;
-
-var input, button;
+var tamanhoCirculo = 50;
 
 var somErro;
 var somSucesso;
 
 
+
 function preload() {
 
-  a1 = loadImage("../RECURSOS/IMAGENS/FFogao.png");
-  a2 = loadImage("../RECURSOS/IMAGENS/leque.png");
-  a3 = loadImage("../RECURSOS/IMAGENS/escada.png");
-  a4 = loadImage("../RECURSOS/IMAGENS/isqueiro.png");
-  a5 = loadImage("../RECURSOS/IMAGENS/balde.png");
-  a6 = loadImage("../RECURSOS/IMAGENS/xxicara.png");
-  a7 = loadImage("../RECURSOS/IMAGENS/alicate.png");
-  a8 = loadImage("../RECURSOS/IMAGENS/aranha.png");
-  a9 = loadImage("../RECURSOS/IMAGENS/onibus1.png");
-  a10 = loadImage("../RECURSOS/IMAGENS/dinheiro.png");
+  a1 = loadImage("../RECURSOS/IMAGENS/pic.PNG");
+  a2 = loadImage("../RECURSOS/IMAGENS/pic.PNG");
+  a3 = loadImage("../RECURSOS/IMAGENS/pic.PNG");
+  a4 = loadImage("../RECURSOS/IMAGENS/pic.PNG");
+  a5 = loadImage("../RECURSOS/IMAGENS/pic.PNG");
+  a6 = loadImage("../RECURSOS/IMAGENS/pic.PNG");
+  a7 = loadImage("../RECURSOS/IMAGENS/pic2.PNG");
+  a8 = loadImage("../RECURSOS/IMAGENS/pic2.PNG");
+  a9 = loadImage("../RECURSOS/IMAGENS/pic2.PNG");
+  a10 = loadImage("../RECURSOS/IMAGENS/pic2.PNG");
+  a11 = loadImage("../RECURSOS/IMAGENS/pic2.PNG");
 
-  bkgImg = loadImage("../RECURSOS/IMAGENS/mod4-rec3.png");
+  bkgImg = loadImage("../RECURSOS/IMAGENS/mod5-atv1.png");
   btProxImg = loadImage("../RECURSOS/IMAGENS/seta.png");
   btVoltarImg = loadImage("../RECURSOS/IMAGENS/seta.png");
   btSomImg = loadImage("../RECURSOS/IMAGENS/02.png");
@@ -55,32 +74,23 @@ function setup() {
   textAlign(CENTER);
   createCanvas(innerWidth, innerHeight);
 
-  var vetor = [[a1], [a2], [a3], [a4], [a5], [a6], [a7], [a8], [a9], [a10]];
+  var vetor = [[a1], [a2], [a3], [a4], [a5], [a6], [a7], [a8], [a9], [a10], [a11]];
 
-  posInput = createVector((innerWidth / 12) * 4.8, (innerHeight / 10.4) * 7); //botao
-
-  input = createInput();
-  input.position(posInput.x, posInput.y);
-
-  button = createButton("Responder");
-  button.position(input.x + 0.5 * input.width - 99, posInput.y + input.height);
-  button.mousePressed(darEntrada);
-  input.changed(darEntrada);
-
-  btProxImgVetor = createVector((innerWidth / 15) * 10.6, (innerHeight / 4) * 3.3);
-  btSomImgVetor = createVector((innerWidth / 45) * 9.6, (innerHeight / 14.5) * 3.3);
-  btVoltarImgVetor = createVector((innerWidth / 16) * 10.6, (innerHeight / 3.7) * 3.3);
+  btProxImgVetor = createVector((width / 15) * 13.6, (innerHeight / 18) * 5);     //setas
+  btSomImgVetor = createVector((width / 44) * 29.5, (innerHeight / 8) * 2);
+  btVoltarImgVetor = createVector((width / 16) * 7.4, (innerHeight / 12.5) * 4.4);
 
   for (var i = 0; i < numBlocos; i++) {
-    blocos[i] = new Bloco(vetor[i], silabas[i], formasErradas[i], formasCertas[i], palavras[i]);
+    blocos[i] = new Bloco(vetor[i], palavras[i], posCerta[i], opcoesPorPalavra[i]);
   }
-
 
   somErro = loadSound("../RECURSOS/AUDIOS/erro.mp3");
   somSucesso = loadSound("../RECURSOS/AUDIOS/sucesso.mp3");
 
-  somErro.setVolume(0.7);
-  somSucesso.setVolume(0.7);
+  somErro.setVolume(0.8);
+  somSucesso.setVolume(0.8);
+
+  // blocos[0].tocar();
 
 }
 
@@ -95,19 +105,6 @@ function draw() {
   image(btSomImg, btSomImgVetor.x, btSomImgVetor.y, 50, 50);
   textAlign(CENTER);
   blocos[blocoAtual].mostrar();
-
-}
-
-function darEntrada() {
-
-  let entrada = input.value();
-
-  if (blocos[blocoAtual].escolher(entrada)) {
-    input.value("");
-    avancarBloco();
-  } else {
-    input.value("");
-  }
 
 }
 
@@ -156,127 +153,94 @@ function mousePressed() {
     mouseY < fimBtSomY) {
     console.log("som");
   }
+
+  var d1 = dist(mouseX, mouseY, 38 * (innerWidth / 80), 55 * (innerHeight / 80)); //posição clicavel
+  var d2 = dist(mouseX, mouseY, 55 * (innerWidth / 80), 55 * (innerHeight / 80));
+  var d3 = dist(mouseX, mouseY, 70 * (innerWidth / 80), 55 * (innerHeight / 80));
+  //var d4 = dist(mouseX, mouseY, 67 * (innerWidth / 80), 55 * (innerHeight / 80));
+
+  if (d1 < tamanhoCirculo) {
+
+    if (blocos[blocoAtual].escolher(1)) {
+      blocos[blocoAtual].tocarCerto();
+      avancarBloco();
+    } else {
+      blocos[blocoAtual].tocarErrado();
+    }
+
+  } else if (d2 < tamanhoCirculo) {
+
+    if (blocos[blocoAtual].escolher(2)) {
+      blocos[blocoAtual].tocarCerto();
+      avancarBloco();
+    } else {
+      blocos[blocoAtual].tocarErrado();
+    }
+
+  } else if (d3 < tamanhoCirculo) {
+
+    if (blocos[blocoAtual].escolher(3)) {
+      blocos[blocoAtual].tocarCerto();
+      avancarBloco();
+    } else {
+      blocos[blocoAtual].tocarErrado();
+    }
+
+  } 
+
+  /*else if (d4 < tamanhoCirculo) {
+
+    if (blocos[blocoAtual].escolher(4)) {
+      blocos[blocoAtual].tocarCerto();
+      avancarBloco();
+    } else {
+      blocos[blocoAtual].tocarErrado();
+    }
+  }*/
 }
 
 class Bloco {
 
-  constructor(imagem, silabas, erradas, certas, palavra) {
+  constructor(imagem, palavraCompleta, posCertaArray, opcoes) {
 
     this.imagem = imagem;
-    this.silabas = silabas;
-    this.nSilabas = this.silabas.length;
-    this.erradas = erradas;
-    this.certas = certas;
-    this.palavra = palavra;
+    this.palavraCompleta = palavraCompleta;
+    this.posCertaArray = posCertaArray;
+    this.opcoes = opcoes;
+    this.pos = 25;
 
-    this.alturaPecas = 35;
-
-    this.p1 = createVector(32 * (innerWidth / 80), this.alturaPecas * (innerHeight / 80));
-    this.p2 = createVector(37 * (innerWidth / 80), this.alturaPecas * (innerHeight / 80)); //bolas pequenas
-    this.p3 = createVector(42 * (innerWidth / 80), this.alturaPecas * (innerHeight / 80));
-    this.p4 = createVector(47 * (innerWidth / 80), this.alturaPecas * (innerHeight / 80));
-
-    this.posSilaba1 = createVector(23 * (innerWidth / 80), 43 * (innerHeight / 80)); //bolas grandes
-    this.posSilaba2 = createVector(33 * (innerWidth / 80), 43 * (innerHeight / 80));
-    this.posSilaba3 = createVector(43 * (innerWidth / 80), 43 * (innerHeight / 80));
-    this.posSilaba4 = createVector(53 * (innerWidth / 80), 43 * (innerHeight / 80));
-
-    this.posImagem = createVector(33*(innerWidth / 80), 20*(innerHeight / 80)); //imagem
-
-    this.posSilaba = [this.posSilaba1, this.posSilaba2, this.posSilaba3, this.posSilaba4];
-
-    this.posPErrada = [this.p1, this.p2, this.p3, this.p4];
-
-  }
-
-  // TODO: organizar indexes (-1, +1) pra 0
-
-  desenharCerto(tipo, pos) {
-    let posP = this.posPErrada[pos - 1];
-
-    switch (tipo) {
-      case 1:
-        push();
-        ellipse(posP.x + 40, posP.y + 40, 60, 40);
-        pop();
-        break;
-      case 2:
-        push();
-        ellipse(posP.x + 40, posP.y + 40, 55, 60);
-        pop();
-        break;
-      case 3:
-        push();
-        rect(posP.x, posP.y + 20, 60, 40);
-        pop();
-        break;
-      case 4:
-        push();
-        arc(posP.x + 40, posP.y + 60, 80, 80, 180, 0);
-        pop();
-        break;
-    }
-
-  }
-
-  desenharErrado(silaba, tipo, pos) {
-
-    let posP = this.posSilaba[pos - 1];
-
-    switch (tipo) {
-      case 1:
-        push();
-        rect(posP.x, posP.y, 100, 60);
-        textSize(40);
-        text(silaba, posP.x + 40, posP.y + 50);
-        pop();
-        break;
-      case 2:
-        push();
-        rect(posP.x, posP.y, 100, 60);
-        textSize(40);
-        text(silaba, posP.x + 40, posP.y + 50);
-        pop();
-        break;
-      case 3:
-        push();
-        rect(posP.x, posP.y, 100, 60);
-        textSize(40);
-        text(silaba, posP.x + 55, posP.y + 50);
-        pop();
-        break;
-      case 4:
-        push();
-        rect(posP.x, posP.y, 100, 60);
-        textSize(40);
-        text(silaba, posP.x + 40, posP.y + 50);
-        pop();
-        break;
-    }
+    this.posImagem = createVector(0.5*(innerWidth / 80), 8*(innerHeight / 80)); //imagem
 
   }
 
   mostrar() {
 
-    this.imagem[0].resize(230, 220);
+    textSize(36);
+    text(this.palavraCompleta, 55 * (innerWidth / 80), 40 * (innerHeight / 80)); //pergunta
 
-    for (var i = 1; i < this.nSilabas + 1; i++) {
-      //this.desenharErrado(this.silabas[i - 1], this.erradas[i - 1], i);
-      //this.desenharCerto(this.certas[i - 1], i);
+    this.imagem[0].resize(520, 520); // tamanho da imagem
+
+    textSize(28);
+    var a = 0;
+    for (var i = 0; i < 30; i += 10) {
+      fill(0);
+      ellipse((this.pos + (i+a)) * (innerWidth / 52), 54 * (innerHeight / 80), tamanhoCirculo); // esferas
+      fill(255);
+      text(this.opcoes[i / 10], (this.pos + (i+a)) * (innerWidth / 52), 55.5 * (innerHeight / 80)); // respostas
+      a = a;
     }
 
     image(this.imagem[0], this.posImagem.x, this.posImagem.y);
 
+
   }
 
-  escolher(entrada) {
-    if (entrada.toUpperCase() == this.palavra) {
-      console.log("certo");
-      somSucesso.play();
+  escolher(posicao) {
+    console.log(posicao);
+    console.log(this.posCertaArray);
+    if (posicao - 1 == this.posCertaArray - 1) {
       return true;
     } else {
-      console.log("errado");
-      somErro.play();
       return false;
     }
   }

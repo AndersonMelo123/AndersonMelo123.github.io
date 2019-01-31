@@ -1,82 +1,67 @@
+var palavras = ["Qual a finalidade da\ncertidão de nascimento?",
+                "Com esse documento:","O que significa NACIONALIDADE?",
+                "O que significa NATURALIDADE?",
+                "Qual a cidade e o estado\nque aparecem na certidão de nascimento?",
+                "Quais as informações constam\nna certidão de nascimento?",
+                "A menina saia de casa e dizia que ia estudar,\nmas ela ia mesmo:",
+                "Depois de quantas horas\no namorado dela chegou?",
+                "Quem tinha um sorriso envolvente?",
+                "Quem iria abençoar o casamento?",
+                "O que a menina não soube disfarçar?",
+                "Qual o significado de enxoval no texto?"];
 
-var manchete1, manchete2, manchete3, manchete4, manchete5, manchete6, manchete7, manchete8, manchete9;
+var opcoesPorPalavra = [
+  ["A\nPrimeiro emprego", "B\nDirigir um veículo", "C\nPrimeiro documento\nde identificação\nde uma pessoa"],
+  ["A\nPassamos a ser\ncidadãos", "B\nSomos autorizados\na dirigir veículos", "C\nPodemos votar"],
+  ["A\nEstado em que\nnascemos", "B\nCidade em que\nnascemos", "C\nPaís em que\nnascemos"],
+  ["A\nMaternidade\nou hospital\nonde nascemos", "B\nEndereço completo\nonde nascemos", "C\nCidade em que\nnascemos"],
+  ["A\nGaranhuns - PE", "B\nSão Paulo - SP", "C\nRecife - PE"],
+  ["A\nNome dos tios,\ncor dos olhos", "B\nPaís, família, estado\ncidade onde nasceu\ne data de nascimento", "C\nEndereço dos pais,\ncor da pele"],
+  ["A\nPassear", "B\nTrabalhar", "C\nNamorar"],
+  ["A\n3 horas", "B\n4 horas", "C\n2 horas"],
+  ["A\nA menina", "B\nO namorado", "C\nA amiga"],
+  ["A\nO pai da menina", "B\nA mãe da menina", "C\nA amiga da menina"],
+  ["A\nA raiva e o \ndesgosto do \ncasamento", "B\nA tristeza de dar\na notícia a mãe", "C\nA alegria do pedido\nde casamento"],
+  ["A\nConjunto de \nroupas e acessórios\n de quem se casa", "B\nConjunto de \nroupas e acessórios\n para um bebê", "C\nConjunto de\nroupas e acessórios\npara um\nserviço ou viagem"]
+];
 
-var balde, casa, mesa, dado, sapato, vaca, janela, xicara, alicate,
-    revista, nuvem, barco, bola, escada, fogao, garfo, telefone, hospital,
-    flor, isqueiro, ketchup, fogo, livro, ovo, queijo, ziper, escova, uva, porta, vaso, casa;
+var a1, a2, a3, a4, a5, a6, a7, a8, a9, a10, a11, a12;
 
-var opcoesPorSilaba;
-var opcoesPorSilaba2;
-
-var posCerta = [0, 1, 3, 1, 2, 0, 2, 3, 2];
+var posCerta = [3, 1, 3, 3, 2, 2, 3, 3, 1, 2, 3, 1];
 
 var sons = [];
 var blocoAtual = 0;
 var blocos = [];
-var numBlocos = 9;
+var numBlocos = 12;
 
 var bkgImg;
 var btProxImg;
 var btProxImgVetor;
 var btSomImg;
 
+var tamanhoCirculo = 50;
+
 var somErro;
 var somSucesso;
 
+
+
 function preload() {
 
-  manchete1    = loadImage("../RECURSOS/IMAGENS/manchete1-1.png");
-  manchete2    = loadImage("../RECURSOS/IMAGENS/manchete2-2.png");
-  manchete3    = loadImage("../RECURSOS/IMAGENS/manchete3-3.png");
-  manchete4    = loadImage("../RECURSOS/IMAGENS/manchete4-4.png");
-  manchete5    = loadImage("../RECURSOS/IMAGENS/manchete5-5.png");
-  manchete6    = loadImage("../RECURSOS/IMAGENS/manchete6-6.png");
-  manchete7    = loadImage("../RECURSOS/IMAGENS/manchete7-7.png");
-  manchete8    = loadImage("../RECURSOS/IMAGENS/manchete8-8.png");
-  manchete9    = loadImage("../RECURSOS/IMAGENS/manchete9-9.png");
-  manchete10   = loadImage("../RECURSOS/IMAGENS/manchete2.png");
+  a1 = loadImage("../RECURSOS/IMAGENS/certidaoNascimento.jpeg");
+  a2 = loadImage("../RECURSOS/IMAGENS/certidaoNascimento.jpeg");
+  a3 = loadImage("../RECURSOS/IMAGENS/certidaoNascimento.jpeg");
+  a4 = loadImage("../RECURSOS/IMAGENS/certidaoNascimento.jpeg");
+  a5 = loadImage("../RECURSOS/IMAGENS/certidaoNascimento.jpeg");
+  a6 = loadImage("../RECURSOS/IMAGENS/certidaoNascimento.jpeg");
+  a7 = loadImage("../RECURSOS/IMAGENS/cordel3.jpg");
+  a8 = loadImage("../RECURSOS/IMAGENS/cordel3.jpg");
+  a9 = loadImage("../RECURSOS/IMAGENS/cordel3.jpg");
+  a10 = loadImage("../RECURSOS/IMAGENS/cordel3.jpg");
+  a11 = loadImage("../RECURSOS/IMAGENS/cordel3.jpg");
+  a12 = loadImage("../RECURSOS/IMAGENS/cordel3.jpg");
 
-  onibus = loadImage("../RECURSOS/IMAGENS/onibus.png");
-  
-  lixo = loadImage("../RECURSOS/IMAGENS/lixo.png");
-  arma = loadImage("../RECURSOS/IMAGENS/arma.png");
-  aviao = loadImage("../RECURSOS/IMAGENS/aviao.png");
-  moto = loadImage("../RECURSOS/IMAGENS/moto.png");
-  igreja  = loadImage("../RECURSOS/IMAGENS/igreja.png");
-  dinheiro = loadImage("../RECURSOS/IMAGENS/dinheiro.png");
-  vacina      = loadImage("../RECURSOS/IMAGENS/vacina.png");
-  mesa      = loadImage("../RECURSOS/IMAGENS/MesaF.png");
-  dado      = loadImage("../RECURSOS/IMAGENS/DadoF.png");
-  sapato    = loadImage("../RECURSOS/IMAGENS/sapato.png");
-  vaca      = loadImage("../RECURSOS/IMAGENS/isqueiro.png");
-  janela    = loadImage("../RECURSOS/IMAGENS/janela.png");
-  xicara    = loadImage("../RECURSOS/IMAGENS/XicaraF.png");
-  alicate   = loadImage("../RECURSOS/IMAGENS/AlicateF.png");
-  revista   = loadImage("../RECURSOS/IMAGENS/RevistaF2.png");
-  nuvem     = loadImage("../RECURSOS/IMAGENS/NuvemF2.png");
-  escada    = loadImage("../RECURSOS/IMAGENS/EscadaF.png");
-  fogao     = loadImage("../RECURSOS/IMAGENS/FogaoF2.png");
-  garfo     = loadImage("../RECURSOS/IMAGENS/GarfoF.png");
-  telefone  = loadImage("../RECURSOS/IMAGENS/TelefoneF.png");
-  hospital  = loadImage("../RECURSOS/IMAGENS/HospitalF.png");
-  isqueiro  = loadImage("../RECURSOS/IMAGENS/IsqueiroF.png");
-  ketchup   = loadImage("../RECURSOS/IMAGENS/KetchupF.png");
-  livro     = loadImage("../RECURSOS/IMAGENS/LivroF.png");
-  ovo       = loadImage("../RECURSOS/IMAGENS/OvoF2.png");
-  queijo    = loadImage("../RECURSOS/IMAGENS/QueijoF2.png");
-  ziper     = loadImage("../RECURSOS/IMAGENS/ZiperF2.png");
-  uva       = loadImage("../RECURSOS/IMAGENS/UvaF2.png");
-  porta     = loadImage("../RECURSOS/IMAGENS/PortaF.png");
-  flor      = loadImage("../RECURSOS/IMAGENS/FlorF.png");
-  escova    = loadImage("../RECURSOS/IMAGENS/EscovaF.png");
-  vaso      = loadImage("../RECURSOS/IMAGENS/VasoF.png");
-  fogo      = loadImage("../RECURSOS/IMAGENS/FogoF.png");
-  bola      = loadImage("../RECURSOS/IMAGENS/BolaF.png");
-  barco     = loadImage("../RECURSOS/IMAGENS/BarcoF.png");
-  balde     = loadImage("../RECURSOS/IMAGENS/BaldeF.png");
-  casa      = loadImage("../RECURSOS/IMAGENS/CasaF.png");
-
-  bkgImg = loadImage("../RECURSOS/IMAGENS/mod4-rec1.png");
+  bkgImg = loadImage("../RECURSOS/IMAGENS/mod5-atv1.png");
   btProxImg = loadImage("../RECURSOS/IMAGENS/seta.png");
   btVoltarImg = loadImage("../RECURSOS/IMAGENS/seta.png");
   btSomImg = loadImage("../RECURSOS/IMAGENS/02.png");
@@ -90,28 +75,21 @@ function setup() {
   textAlign(CENTER);
   createCanvas(innerWidth, innerHeight);
 
-  var opcoesPorSilaba2 = [[manchete1], [manchete2], [manchete3], [manchete4], 
-            [manchete5], [manchete6], [manchete7], [manchete8],
-             [manchete9], [manchete10]];
+  var vetor = [[a1], [a2], [a3], [a4], [a5], [a6], [a7], [a8], [a9], [a10], [a11], [a12]];
 
-  var opcoesPorSilaba = [[vacina, mesa, dado, sapato],[vaca, dinheiro, xicara, alicate],[revista, bola, janela, casa],
-                        [alicate, igreja, sapato, fogao],[mesa, garfo, moto, dado],[aviao, hospital, flor, isqueiro],
-                        [ketchup, fogo, arma, livro],[ovo, garfo, fogao, lixo],[bola, escada, onibus, garfo]];
+  btProxImgVetor = createVector((width / 15) * 13.6, (innerHeight / 18) * 5);     //setas
+  btSomImgVetor = createVector((width / 44) * 29.5, (innerHeight / 8) * 2);
+  btVoltarImgVetor = createVector((width / 16) * 7.4, (innerHeight / 12.5) * 4.4);
 
-  btProxImgVetor = createVector((width / 14.5) * 10.6, (innerHeight / 15) * 3.3);
-  btSomImgVetor = createVector((width / 50) * 10.6, (innerHeight / 10) * 2.5);
-  btVoltarImgVetor = createVector((width / 16) * 11,(innerHeight / 11.2 ) * 3.3);
-
-  for(var i = 0; i < numBlocos; i++) {
-    blocos[i] = new Bloco(opcoesPorSilaba2[i], posCerta[i], opcoesPorSilaba[i]);
+  for (var i = 0; i < numBlocos; i++) {
+    blocos[i] = new Bloco(vetor[i], palavras[i], posCerta[i], opcoesPorPalavra[i]);
   }
 
   somErro = loadSound("../RECURSOS/AUDIOS/erro.mp3");
   somSucesso = loadSound("../RECURSOS/AUDIOS/sucesso.mp3");
 
-  somErro.setVolume(0.7);
-  somSucesso.setVolume(0.7);
-
+  somErro.setVolume(0.8);
+  somSucesso.setVolume(0.8);
 
   // blocos[0].tocar();
 
@@ -133,34 +111,34 @@ function draw() {
 
 function avancarBloco() {
   blocoAtual++;
-  if(blocoAtual > numBlocos-1) {
+  if (blocoAtual > numBlocos - 1) {
     blocoAtual = 0;
   }
 }
 
 function voltarBloco() {
   blocoAtual--;
-  if(blocoAtual < 0) {
-    blocoAtual = numBlocos-1;
+  if (blocoAtual < 0) {
+    blocoAtual = numBlocos - 1;
   }
 }
 
 function mousePressed() {
 
-  var centroImgX =  btVoltarImgVetor.x + btVoltarImg.width/4 -80;
-  var centroImgY =  btVoltarImgVetor.y + btVoltarImg.height/6 -75;
+  var centroImgX = btVoltarImgVetor.x + btVoltarImg.width / 4 - 80;
+  var centroImgY = btVoltarImgVetor.y + btVoltarImg.height / 6 - 75;
   var distancia = dist(mouseX, mouseY, centroImgX, centroImgY);
 
-  if(distancia < 50) {
+  if (distancia < 50) {
     voltarBloco();
     blocos[blocoAtual].tocar();
   }
 
-  centroImgX =  btProxImgVetor.x + btProxImg.width/4 -20;
-  centroImgY =  btProxImgVetor.y + btProxImg.height/6 -24;
+  centroImgX = btProxImgVetor.x + btProxImg.width / 4 - 20;
+  centroImgY = btProxImgVetor.y + btProxImg.height / 6 - 24;
   distancia = dist(mouseX, mouseY, centroImgX, centroImgY);
 
-  if(distancia < 50) {
+  if (distancia < 50) {
     avancarBloco();
   }
 
@@ -170,107 +148,98 @@ function mousePressed() {
   var fimBtSomX = btSomImgVetor.x + 50;
   var fimBtSomY = btSomImgVetor.y + 50;
 
-  if(mouseX > inicioBtSomX
-    && mouseX < fimBtSomX
-    && mouseY > inicioBtSomY
-    && mouseY < fimBtSomY) {
+  if (mouseX > inicioBtSomX &&
+    mouseX < fimBtSomX &&
+    mouseY > inicioBtSomY &&
+    mouseY < fimBtSomY) {
     console.log("som");
   }
 
-  var d1 = dist(mouseX, mouseY, 18*(innerWidth / 80) + (60), 58*(innerHeight / 80) + (60));
-  var d2 = dist(mouseX, mouseY, 30*(innerWidth / 80) + (60), 58*(innerHeight / 80) + (60));
-  var d3 = dist(mouseX, mouseY, 43*(innerWidth / 80) + (60), 58*(innerHeight / 80) + (60));
-  var d4 = dist(mouseX, mouseY, 55*(innerWidth / 80) + (60), 58*(innerHeight / 80) + (60));
+  var d1 = dist(mouseX, mouseY, 38 * (innerWidth / 80), 55 * (innerHeight / 80)); //posição clicavel
+  var d2 = dist(mouseX, mouseY, 55 * (innerWidth / 80), 55 * (innerHeight / 80));
+  var d3 = dist(mouseX, mouseY, 70 * (innerWidth / 80), 55 * (innerHeight / 80));
+  //var d4 = dist(mouseX, mouseY, 67 * (innerWidth / 80), 55 * (innerHeight / 80));
 
-  if(d1 < 120) {
+  if (d1 < tamanhoCirculo) {
 
-    if(blocos[blocoAtual].escolher(1)) {
+    if (blocos[blocoAtual].escolher(1)) {
       blocos[blocoAtual].tocarCerto();
       avancarBloco();
     } else {
       blocos[blocoAtual].tocarErrado();
     }
 
-  } else if(d2 < 120) {
+  } else if (d2 < tamanhoCirculo) {
 
-    if(blocos[blocoAtual].escolher(2)) {
+    if (blocos[blocoAtual].escolher(2)) {
       blocos[blocoAtual].tocarCerto();
       avancarBloco();
     } else {
       blocos[blocoAtual].tocarErrado();
     }
 
-  } else if(d3 < 120) {
+  } else if (d3 < tamanhoCirculo) {
 
-    if(blocos[blocoAtual].escolher(3)) {
+    if (blocos[blocoAtual].escolher(3)) {
       blocos[blocoAtual].tocarCerto();
       avancarBloco();
     } else {
       blocos[blocoAtual].tocarErrado();
     }
 
-  } else if(d4 < 120) {
+  } 
 
-    if(blocos[blocoAtual].escolher(4)) {
+  /*else if (d4 < tamanhoCirculo) {
+
+    if (blocos[blocoAtual].escolher(4)) {
       blocos[blocoAtual].tocarCerto();
       avancarBloco();
     } else {
       blocos[blocoAtual].tocarErrado();
     }
-  }
+  }*/
 }
 
 class Bloco {
 
-  constructor(imagem, posCertaArray, opcoes) {
+  constructor(imagem, palavraCompleta, posCertaArray, opcoes) {
 
     this.imagem = imagem;
+    this.palavraCompleta = palavraCompleta;
     this.posCertaArray = posCertaArray;
     this.opcoes = opcoes;
-    
     this.pos = 25;
 
-    this.p1 = createVector(18*(innerWidth / 80), 56*(innerHeight / 80)); //distancia das figuras!!
-    this.p2 = createVector(27*(innerWidth / 80), 56*(innerHeight / 80));
-    this.p3 = createVector(41*(innerWidth / 80), 56*(innerHeight / 80));
-    this.p4 = createVector(53*(innerWidth / 80), 56*(innerHeight / 80));
-
-    this.tamanho = 120;
-
-    this.posImagem = createVector(28*(innerWidth / 80), 14*(innerHeight / 80)); //imagem
-    //this.posSilaba = createVector(38*(innerWidth / 80), 25*(innerHeight / 80)); //silaba
+    this.posImagem = createVector(0.5*(innerWidth / 80), 8*(innerHeight / 80)); //imagem
 
   }
 
   mostrar() {
 
-    textSize(90);
-    fill(255);
-    //text(this.silaba, this.posSilaba.x, this.posSilaba.y);
+    textSize(36);
+    text(this.palavraCompleta, 55 * (innerWidth / 80), 40 * (innerHeight / 80)); //pergunta
 
-    this.imagem[0].resize(370, 360);
+    this.imagem[0].resize(520, 520); // tamanho da imagem
 
-    
-    this.opcoes[0].resize(120, 120);
-    this.opcoes[1].resize(120, 120);
-    this.opcoes[2].resize(120, 120);
-    this.opcoes[3].resize(120, 120);
-
-    image(this.opcoes[0], this.p1.x, this.p1.y);
-    image(this.opcoes[1], this.p2.x, this.p2.y);
-    image(this.opcoes[2], this.p3.x, this.p3.y);
-    image(this.opcoes[3], this.p4.x, this.p4.y);
+    textSize(28);
+    var a = 0;
+    for (var i = 0; i < 30; i += 10) {
+      fill(0);
+      ellipse((this.pos + (i+a)) * (innerWidth / 52), 54 * (innerHeight / 80), tamanhoCirculo); // esferas
+      fill(255);
+      text(this.opcoes[i / 10], (this.pos + (i+a)) * (innerWidth / 52), 55.5 * (innerHeight / 80)); // respostas
+      a = a;
+    }
 
     image(this.imagem[0], this.posImagem.x, this.posImagem.y);
 
-    fill(255);
 
   }
 
   escolher(posicao) {
     console.log(posicao);
     console.log(this.posCertaArray);
-    if(posicao-1 == this.posCertaArray) {
+    if (posicao - 1 == this.posCertaArray - 1) {
       return true;
     } else {
       return false;
@@ -285,6 +254,5 @@ class Bloco {
   tocarErrado() {
     console.log("errado");
     somErro.play();
-
   }
 }
